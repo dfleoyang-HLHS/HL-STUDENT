@@ -33,11 +33,15 @@
         tr:hover { background-color: #f9f9f9; }
         .num { font-weight: bold; color: var(--primary); }
 
-        /* 錯誤提示 */
+        /* 載入與錯誤提示 */
+        #loading-overlay {
+            text-align: center; padding: 40px; color: #666; font-size: 16px;
+        }
         #error-overlay { 
             display: none; background: #fff5f5; color: #c53030; padding: 15px; 
             border: 1px solid #feb2b2; border-radius: 8px; margin-bottom: 20px; text-align: center; 
         }
+        #main-content { display: none; }
     </style>
 </head>
 <body>
@@ -48,60 +52,64 @@
     </div>
 
     <div id="error-overlay">
-        <strong>讀取失敗：</strong> 偵測到瀏覽器安全性限制。請務必使用 <strong>Live Server</strong> 或伺服器環境開啟此檔案，不可直接點擊 HTML 檔案。
+        <strong>讀取失敗：</strong> 無法載入 db.json 資料。請確認 db.json 與 index.html 在同一個資料夾內，且已正確上傳至 GitHub。
     </div>
 
-    <div class="filter-panel">
-        <div class="filter-group">
-            <label>報部身份別 (Status)</label>
-            <select id="statusSelect" onchange="updateDashboard()">
-                <option value="全部">全部</option>
-                <option value="一般生">一般生</option>
-                <option value="原住民生">原住民生</option>
-                <option value="身心障礙">身心障礙類 (含所有身障)</option>
-            </select>
-        </div>
-        <div class="filter-group">
-            <label>原住民族/身分 (Ethnicity)</label>
-            <select id="ethnicSelect" onchange="updateDashboard()">
-                <option value="全部">全部</option>
-                <option value="一般生">一般生</option>
-                <option value="身心生">身心生</option>
+    <div id="loading-overlay">⏳ 資料載入中，請稍候…</div>
+
+    <div id="main-content">
+        <div class="filter-panel">
+            <div class="filter-group">
+                <label>報部身份別 (Status)</label>
+                <select id="statusSelect" onchange="updateDashboard()">
+                    <option value="全部">全部</option>
+                    <option value="一般生">一般生</option>
+                    <option value="原住民生">原住民生</option>
+                    <option value="身心障礙">身心障礙類 (含所有身障)</option>
                 </select>
+            </div>
+            <div class="filter-group">
+                <label>原住民族/身分 (Ethnicity)</label>
+                <select id="ethnicSelect" onchange="updateDashboard()">
+                    <option value="全部">全部</option>
+                    <option value="一般生">一般生</option>
+                    <option value="身心生">身心生</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>性別 (Gender)</label>
+                <select id="genderSelect" onchange="updateDashboard()">
+                    <option value="全部">全部</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            </div>
         </div>
-        <div class="filter-group">
-            <label>性別 (Gender)</label>
-            <select id="genderSelect" onchange="updateDashboard()">
-                <option value="全部">全部</option>
-                <option value="男">男</option>
-                <option value="女">女</option>
-            </select>
-        </div>
-    </div>
 
-    <div class="chart-grid">
-        <div class="card">
-            <h2>性別比例分析</h2>
-            <canvas id="genderChart"></canvas>
+        <div class="chart-grid">
+            <div class="card">
+                <h2>性別比例分析</h2>
+                <canvas id="genderChart"></canvas>
+            </div>
+            <div class="card">
+                <h2>各類別/族群分佈</h2>
+                <canvas id="tribeChart"></canvas>
+            </div>
         </div>
-        <div class="card">
-            <h2>各類別/族群分佈</h2>
-            <canvas id="tribeChart"></canvas>
-        </div>
-    </div>
 
-    <div class="card">
-        <h2>統計明細數據表</h2>
-        <table id="summaryTable">
-            <thead>
-                <tr>
-                    <th>統計項目</th>
-                    <th>人數 (Count)</th>
-                    <th>百分比 (Percentage)</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody"></tbody>
-        </table>
+        <div class="card">
+            <h2>統計明細數據表</h2>
+            <table id="summaryTable">
+                <thead>
+                    <tr>
+                        <th>統計項目</th>
+                        <th>人數 (Count)</th>
+                        <th>百分比 (Percentage)</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -109,18 +117,33 @@
 let allData = [];
 let gChart, tChart;
 
+// 取得 db.json 的正確路徑（相容 GitHub Pages 子目錄部署）
+function getDataUrl() {
+    const base = document.currentScript
+        ? document.currentScript.src
+        : window.location.href;
+    const url = new URL('db.json', window.location.href);
+    return url.href;
+}
+
 // 1. 初始化讀取 db.json
 async function init() {
     try {
-        const response = await fetch('db.json');
-        if (!response.ok) throw new Error();
+        const dataUrl = new URL('db.json', window.location.href).href;
+        const response = await fetch(dataUrl);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         allData = await response.json();
         
+        document.getElementById('loading-overlay').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+
         setupDynamicFilters();
         setupCharts();
         updateDashboard();
     } catch (err) {
+        document.getElementById('loading-overlay').style.display = 'none';
         document.getElementById('error-overlay').style.display = 'block';
+        console.error('載入錯誤:', err);
     }
 }
 
@@ -131,7 +154,12 @@ function setupDynamicFilters() {
                    .filter(t => t !== "一般生" && t !== "身心生");
     
     tribes.sort().forEach(t => {
-        if(t) ethnicSelect.innerHTML += `<option value="${t}">${t}</option>`;
+        if (t) {
+            const opt = document.createElement('option');
+            opt.value = t;
+            opt.textContent = t;
+            ethnicSelect.appendChild(opt);
+        }
     });
 }
 
@@ -142,11 +170,13 @@ function setupCharts() {
 
     gChart = new Chart(ctxG, {
         type: 'pie',
+        data: { labels: [], datasets: [{ data: [] }] },
         options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
     });
 
     tChart = new Chart(ctxT, {
         type: 'bar',
+        data: { labels: [], datasets: [{ data: [] }] },
         options: { 
             responsive: true, 
             plugins: { legend: { display: false } },
@@ -162,13 +192,10 @@ function updateDashboard() {
     const selGender = document.getElementById('genderSelect').value;
 
     const filtered = allData.filter(d => {
-        // 報部身份邏輯：如果是選「身心障礙」，則匹配所有含「身心障礙」字眼的資料
         const matchStatus = (selStatus === '全部') || 
                             (selStatus === '身心障礙' ? d.報部身分.includes('身心障礙') : d.報部身分 === selStatus);
-        
         const matchEthnic = (selEthnic === '全部' || d.原住民族 === selEthnic);
         const matchGender = (selGender === '全部' || d.性別 === selGender);
-        
         return matchStatus && matchEthnic && matchGender;
     });
 
@@ -177,12 +204,12 @@ function updateDashboard() {
     const tribeCounts = {};
 
     filtered.forEach(d => {
-        if(d.性別) genderCounts[d.性別]++;
+        if (d.性別) genderCounts[d.性別]++;
         const tKey = d.原住民族 || '未分類';
         tribeCounts[tKey] = (tribeCounts[tKey] || 0) + 1;
     });
 
-    // 更新圖表
+    // 更新性別圓餅圖
     gChart.data = {
         labels: Object.keys(genderCounts),
         datasets: [{
@@ -192,7 +219,8 @@ function updateDashboard() {
     };
     gChart.update();
 
-    const sortedTribes = Object.entries(tribeCounts).sort((a,b) => b[1] - a[1]);
+    // 更新族群長條圖
+    const sortedTribes = Object.entries(tribeCounts).sort((a, b) => b[1] - a[1]);
     tChart.data = {
         labels: sortedTribes.map(x => x[0]),
         datasets: [{
@@ -202,20 +230,20 @@ function updateDashboard() {
     };
     tChart.update();
 
-    // 更新表格
+    // 更新明細表格
     const tbody = document.getElementById('tableBody');
     tbody.innerHTML = '';
     const total = filtered.length;
 
     sortedTribes.forEach(([name, count]) => {
         const percent = total > 0 ? ((count / total) * 100).toFixed(1) : 0;
-        tbody.innerHTML += `
-            <tr>
-                <td>${name}</td>
-                <td class="num">${count}</td>
-                <td>${percent}%</td>
-            </tr>
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${name}</td>
+            <td class="num">${count}</td>
+            <td>${percent}%</td>
         `;
+        tbody.appendChild(tr);
     });
 }
 
