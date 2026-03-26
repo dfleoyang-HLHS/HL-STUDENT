@@ -3,39 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>學生組成分析儀表板 - JSON 連動版</title>
+    <title>學生組成分析儀表板</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root { --primary: #2563eb; --bg: #f1f5f9; }
-        body { font-family: "Microsoft JhengHei", sans-serif; background: var(--bg); margin: 0; padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .filter-card { 
-            background: white; padding: 20px; border-radius: 12px; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            display: flex; gap: 20px; justify-content: center; margin-bottom: 20px;
+        :root { --primary: #2563eb; --bg: #f8fafc; }
+        body { font-family: "Microsoft JhengHei", sans-serif; background: var(--bg); padding: 20px; color: #334155; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .filter-section { 
+            background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            display: flex; gap: 20px; justify-content: center; margin-bottom: 25px;
         }
-        .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .table-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { padding: 12px; border-bottom: 1px solid #e2e8f0; text-align: left; }
-        th { background: #f8fafc; }
-        #error-msg { color: red; text-align: center; display: none; padding: 10px; background: #fee2e2; border-radius: 8px; margin-bottom: 10px; }
+        .filter-group { display: flex; flex-direction: column; gap: 5px; }
+        select { padding: 8px 15px; border-radius: 6px; border: 1px solid #cbd5e1; min-width: 150px; }
+        .chart-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; margin-bottom: 25px; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: white; border-radius: 8px; overflow: hidden; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        th { background: #f1f5f9; font-weight: 600; }
+        .error-overlay { display: none; background: #fee2e2; color: #b91c1c; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; border: 1px solid #f87171; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div id="error-msg">偵測到存取錯誤！請確保您是透過伺服器（如 Live Server）開啟此網頁，而非直接點擊檔案。</div>
-    
-    <div class="filter-card">
-        <div>
-            <label>報部身份：</label>
-            <select id="idSelect" onchange="updateUI()"></select>
+    <div id="errorBox" class="error-overlay">
+        <strong>存取受限：</strong> 請使用 Live Server 或伺服器環境開啟此檔案，否則無法讀取 db.json。
+    </div>
+
+    <div class="filter-section">
+        <div class="filter-group">
+            <label>報部身份別</label>
+            <select id="idSelect" onchange="updateDashboard()"></select>
         </div>
-        <div>
-            <label>性別：</label>
-            <select id="genSelect" onchange="updateUI()">
+        <div class="filter-group">
+            <label>性別</label>
+            <select id="genSelect" onchange="updateDashboard()">
                 <option value="all">全部</option>
                 <option value="男">男</option>
                 <option value="女">女</option>
@@ -48,12 +50,12 @@
         <div class="card"><canvas id="tribeChart"></canvas></div>
     </div>
 
-    <div class="table-card">
-        <h3>統計明細表</h3>
-        <table id="summaryTable">
+    <div class="card">
+        <h3>統計明細數據</h3>
+        <table id="dataTable">
             <thead>
                 <tr>
-                    <th>分類項目</th>
+                    <th>分類名稱 (原住民族別/一般/身心)</th>
                     <th>人數</th>
                     <th>百分比 (%)</th>
                 </tr>
@@ -65,39 +67,39 @@
 
 <script>
 let allData = [];
-let gChart, tChart;
+let genderChart, tribeChart;
 
-// 初始化：從外部 db.json 抓取資料
-async function init() {
+// 初始化：呼叫外部 db.json
+async function fetchData() {
     try {
         const response = await fetch('db.json');
-        if (!response.ok) throw new Error('無法讀取 db.json');
+        if (!response.ok) throw new Error();
         allData = await response.json();
         
-        setupFilters();
-        setupCharts();
-        updateUI();
+        initFilters();
+        initCharts();
+        updateDashboard();
     } catch (err) {
-        console.error(err);
-        document.getElementById('error-msg').style.display = 'block';
+        document.getElementById('errorBox').style.display = 'block';
     }
 }
 
-function setupFilters() {
+function initFilters() {
     const idSet = new Set(allData.map(d => d.報部身分));
     const select = document.getElementById('idSelect');
     select.innerHTML = '<option value="all">全部身份</option>';
     idSet.forEach(id => { if(id) select.innerHTML += `<option value="${id}">${id}</option>`; });
 }
 
-function setupCharts() {
-    const ctxG = document.getElementById('genderChart');
-    const ctxT = document.getElementById('tribeChart');
-    gChart = new Chart(ctxG, { type: 'pie', options: { plugins: { title: { display: true, text: '性別比例' } } } });
-    tChart = new Chart(ctxT, { type: 'bar', options: { plugins: { legend: { display: false }, title: { display: true, text: '族群分布' } } } });
+function initCharts() {
+    const ctxG = document.getElementById('genderChart').getContext('2d');
+    const ctxT = document.getElementById('tribeChart').getContext('2d');
+
+    genderChart = new Chart(ctxG, { type: 'pie', options: { plugins: { title: { display: true, text: '性別比例' } } } });
+    tribeChart = new Chart(ctxT, { type: 'bar', options: { plugins: { legend: { display: false }, title: { display: true, text: '族群分佈' } } } });
 }
 
-function updateUI() {
+function updateDashboard() {
     const selId = document.getElementById('idSelect').value;
     const selGen = document.getElementById('genSelect').value;
 
@@ -105,32 +107,39 @@ function updateUI() {
         return (selId === 'all' || d.報部身分 === selId) && (selGen === 'all' || d.性別 === selGen);
     });
 
-    // 統計
+    // 數據統計
     const genders = { '男': 0, '女': 0 };
     const tribes = {};
     filtered.forEach(d => {
-        genders[d.性別]++;
-        tribes[d.原住民族] = (tribes[d.原住民族] || 0) + 1;
+        if(d.性別) genders[d.性別]++;
+        const tKey = d.原住民族 || '未分類';
+        tribes[tKey] = (tribes[tKey] || 0) + 1;
     });
 
     // 更新圖表
-    gChart.data = { labels: Object.keys(genders), datasets: [{ data: Object.values(genders), backgroundColor: ['#3b82f6', '#f43f5e'] }] };
-    gChart.update();
+    genderChart.data = {
+        labels: Object.keys(genders),
+        datasets: [{ data: Object.values(genders), backgroundColor: ['#3b82f6', '#f43f5e'] }]
+    };
+    genderChart.update();
 
-    const sortedTribes = Object.entries(tribes).sort((a,b) => b[1] - a[1]);
-    tChart.data = { labels: sortedTribes.map(x => x[0]), datasets: [{ data: sortedTribes.map(x => x[1]), backgroundColor: '#10b981' }] };
-    tChart.update();
+    const tribeEntries = Object.entries(tribes).sort((a,b) => b[1] - a[1]);
+    tribeChart.data = {
+        labels: tribeEntries.map(x => x[0]),
+        datasets: [{ data: tribeEntries.map(x => x[1]), backgroundColor: '#10b981' }]
+    };
+    tribeChart.update();
 
     // 更新表格
     const tbody = document.getElementById('tableBody');
     tbody.innerHTML = '';
-    sortedTribes.forEach(([name, count]) => {
+    tribeEntries.forEach(([name, count]) => {
         const pct = filtered.length > 0 ? ((count / filtered.length) * 100).toFixed(1) : 0;
-        tbody.innerHTML += `<tr><td>${name}</td><td>${count}</td><td>${pct}%</td></tr>`;
+        tbody.innerHTML += `<tr><td>${name}</td><td><b>${count}</b></td><td>${pct}%</td></tr>`;
     });
 }
 
-init();
+fetchData();
 </script>
 </body>
 </html>
