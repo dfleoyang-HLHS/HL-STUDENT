@@ -1,4 +1,4 @@
-"""讀取 students.json，產生國中來源分析網頁 jh_sources.html。
+"""讀取 students.json，產生國中來源分析網頁 index.html。
 
 網頁只嵌入「年級、班級、國中、報部身份、原住民族別」五個欄位，不含學號與姓名。
 執行：uv run build_dashboard.py
@@ -31,7 +31,7 @@ payload = {
     "schools": schools,
     "records": records,
 }
-template = (BASE / "jh_sources.template.html").read_text(encoding="utf-8")
+template = (BASE / "index.template.html").read_text(encoding="utf-8")
 html = template.replace("__DATA__", json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
-(BASE / "jh_sources.html").write_text(html, encoding="utf-8")
-print(f"寫出 jh_sources.html（{len(records)} 筆、{len(schools)} 所國中）")
+(BASE / "index.html").write_text(html, encoding="utf-8")
+print(f"寫出 index.html（{len(records)} 筆、{len(schools)} 所國中）")

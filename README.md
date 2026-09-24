@@ -1,6 +1,6 @@
 # 花中學生來源分析
 
-把國立花蓮高中三個年級的學生資料 Excel 整理成一份 `students.json`，再產生一個分析網頁 `jh_sources.html`。網頁可以查詢學生畢業國中的來源、報部身份，以及原住民族別。
+把國立花蓮高中三個年級的學生資料 Excel 整理成一份 `students.json`，再產生一個分析網頁 `index.html`。網頁可以查詢學生畢業國中的來源、報部身份，以及原住民族別。
 
 - 資料範圍：2024、2025、2026 年入學（115 學年度的高三、高二、高一），共 998 人
 - 線上網頁（私人連結，要分享請在網頁的「分享」選單開放權限）：<https://claude.ai/artifact/Wg4g1fRePdKaZaaZ7paT61>
@@ -11,7 +11,7 @@
 
 ```bash
 uv run build_students_json.py   # Excel → students.json
-uv run build_dashboard.py       # students.json → jh_sources.html
+uv run build_dashboard.py       # students.json → index.html
 ```
 
 第一支程式會用 uv 自動安裝需要的 `openpyxl` 套件，不需要用 pip 另外安裝。Excel 更新後，重新執行這兩行即可。
@@ -26,8 +26,8 @@ uv run build_dashboard.py       # students.json → jh_sources.html
 | `build_students_json.py` | 讀取上面的 Excel，合併後產生 `students.json` |
 | `students.json` | 整理好的學生資料，含姓名，**請勿公開** |
 | `build_dashboard.py` | 讀取 `students.json`，把統計用的欄位嵌入網頁範本 |
-| `jh_sources.template.html` | 網頁範本，要修改網頁請改這個檔案 |
-| `jh_sources.html` | 產生出來的網頁，可以直接用瀏覽器開啟 |
+| `index.template.html` | 網頁範本，要修改網頁請改這個檔案 |
+| `index.html` | 產生出來的網頁，可以直接用瀏覽器開啟 |
 
 ### 檔名規則
 
@@ -113,4 +113,4 @@ uv run build_dashboard.py       # students.json → jh_sources.html
 
 ### 更新線上網頁
 
-重新產生 `jh_sources.html` 後，線上版不會自動更新，需要再發布一次。可以請 Claude Code 把 `jh_sources.html` 重新發布到上面的連結。
+重新產生 `index.html` 後，線上版不會自動更新，需要再發布一次。可以請 Claude Code 把 `index.html` 重新發布到上面的連結。
