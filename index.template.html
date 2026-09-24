@@ -7,6 +7,8 @@
   --bg:#f7f8f7; --surface:#ffffff; --ink:#15191c; --ink-2:#50575c; --ink-3:#848b90;
   --line:#e3e6e5; --grid:#eceeed; --chip:#eef1f0; --accent:#1f5e57;
   --g3:#2a78d6; --g2:#eb6834; --g1:#1baf7a;
+  --b0:#0d366b; --b1:#1c5cab; --b2:#2a78d6; --b3:#5598e7; --b4:#86b6ef; --pos:#2a78d6; --neg:#e34948;
+  --l0:#0d366b; --l1:#184f95; --l2:#256abf; --l3:#2a78d6; --l4:#3987e5; --l5:#6da7ec; --l6:#86b6ef;
   --t0:#2a78d6; --t1:#eb6834; --t2:#1baf7a; --t3:#eda100; --t4:#e87ba4; --t5:#a3a8ab;
   --tip-bg:#15191c; --tip-ink:#f5f7f6;
 }
@@ -16,6 +18,8 @@
     --bg:#131615; --surface:#1b1f1e; --ink:#eef1f0; --ink-2:#b4bbb9; --ink-3:#7f8886;
     --line:#2c3331; --grid:#262c2a; --chip:#242a28; --accent:#7cc7b9;
     --g3:#3987e5; --g2:#d95926; --g1:#199e70;
+    --b0:#cde2fb; --b1:#9ec5f4; --b2:#6da7ec; --b3:#3987e5; --b4:#256abf; --pos:#3987e5; --neg:#e66767;
+    --l0:#cde2fb; --l1:#9ec5f4; --l2:#6da7ec; --l3:#3987e5; --l4:#2a78d6; --l5:#256abf; --l6:#1c5cab;
     --t0:#3987e5; --t1:#d95926; --t2:#199e70; --t3:#c98500; --t4:#d55181; --t5:#686f73;
     --tip-bg:#eef1f0; --tip-ink:#131615;
   }
@@ -25,6 +29,8 @@
   --bg:#131615; --surface:#1b1f1e; --ink:#eef1f0; --ink-2:#b4bbb9; --ink-3:#7f8886;
   --line:#2c3331; --grid:#262c2a; --chip:#242a28; --accent:#7cc7b9;
   --g3:#3987e5; --g2:#d95926; --g1:#199e70;
+  --b0:#cde2fb; --b1:#9ec5f4; --b2:#6da7ec; --b3:#3987e5; --b4:#256abf; --pos:#3987e5; --neg:#e66767;
+  --l0:#cde2fb; --l1:#9ec5f4; --l2:#6da7ec; --l3:#3987e5; --l4:#2a78d6; --l5:#256abf; --l6:#1c5cab;
   --t0:#3987e5; --t1:#d95926; --t2:#199e70; --t3:#c98500; --t4:#d55181; --t5:#686f73;
   --tip-bg:#eef1f0; --tip-ink:#131615;
 }
@@ -180,6 +186,23 @@ table.tmatrix td.strong{font-weight:700}
 .chartwrap{position:relative;min-width:0}
 .chartwrap svg{display:block;width:100%;height:auto;overflow:visible}
 .chartwrap text{font-family:inherit}
+
+/* exam tab */
+.exam-note{font-size:13.5px;color:var(--ink-2);margin:0;background:var(--chip);border-radius:8px;padding:10px 14px}
+.exam-note b{color:var(--ink)}
+.bandrows .row{grid-template-columns:6.5em minmax(0,1fr) 7.4em}
+.bandrows .row .name em{white-space:nowrap}
+@media (max-width:520px){.bandrows .row{grid-template-columns:5.6em minmax(0,1fr) 4.2em}}
+table.band th:first-child,table.band td:first-child{position:sticky;left:0;background:var(--surface)}
+
+/* exam x junior high */
+.jhband .row{grid-template-columns:9.5em minmax(0,1fr) 3.4em}
+.jhband .row.total{border-top:1px solid var(--line);margin-top:4px;padding-top:7px}
+@media (max-width:520px){.jhband .row{grid-template-columns:6.8em minmax(0,1fr) 2.8em}}
+table.avg td.heat{border-bottom:2px solid var(--surface);border-left:2px solid var(--surface)}
+table.avg tr.small td{color:var(--ink-3)}
+.divlegend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2)}
+.divlegend span{display:flex;align-items:center;gap:6px}
 </style>
 
 <div class="wrap">
@@ -193,6 +216,7 @@ table.tmatrix td.strong{font-weight:700}
     <button type="button" role="tab" id="tab-overview" aria-controls="view-overview">全校總覽</button>
     <button type="button" role="tab" id="tab-special" aria-controls="view-special">特殊班分析</button>
     <button type="button" role="tab" id="tab-tribe" aria-controls="view-tribe">原住民族別</button>
+    <button type="button" role="tab" id="tab-exam" aria-controls="view-exam">高一入學成績</button>
   </nav>
 
   <!-- ===== 全校總覽 ===== -->
@@ -398,6 +422,96 @@ table.tmatrix td.strong{font-weight:700}
     </section>
   </div>
 
+  <!-- ===== 高一入學成績 ===== -->
+  <div class="view" id="view-exam" role="tabpanel" aria-labelledby="tab-exam" hidden>
+    <div class="filters" role="group" aria-label="入學成績篩選">
+      <div class="fgroup">
+        <span class="flabel">班別</span>
+        <div class="seg" id="eprogSeg"></div>
+      </div>
+      <div class="fgroup">
+        <label class="flabel" for="eclsSel">班級</label>
+        <select id="eclsSel"></select>
+      </div>
+    </div>
+
+    <p class="exam-note" id="examNote"></p>
+    <section class="tiles" id="etiles" aria-label="總等第級距"></section>
+
+    <div class="grid2">
+      <section class="panel bandrows" aria-labelledby="h-band">
+        <div>
+          <h2 id="h-band">總等第級距</h2>
+          <p class="sub" id="bandSub"></p>
+        </div>
+        <div class="axis" aria-hidden="true"><span></span><div class="ticks" id="bticks"></div><span></span></div>
+        <div class="bars" id="bandBars"></div>
+      </section>
+      <div class="side">
+        <section class="panel" aria-labelledby="h-acount">
+          <div>
+            <h2 id="h-acount">A 以上的科數</h2>
+            <p class="sub">A、A+、A++ 都算一科 A</p>
+          </div>
+          <div class="clist" id="aclist"></div>
+        </section>
+        <section class="panel" aria-labelledby="h-noscore">
+          <div>
+            <h2 id="h-noscore">沒有入學成績</h2>
+            <p class="sub">特殊管道入學（如體育班、音樂班），或去年出國、今年重讀的學生</p>
+          </div>
+          <div class="clist" id="nolist"></div>
+        </section>
+      </div>
+    </div>
+
+    <section class="panel comp" aria-labelledby="h-subj">
+      <div>
+        <h2 id="h-subj">各科等級分布</h2>
+        <p class="sub" id="subjSub"></p>
+      </div>
+      <div class="legend" id="levelLegend"></div>
+      <div class="axis" aria-hidden="true"><span></span><div class="ticks" id="sjticks"></div><span></span></div>
+      <div class="bars" id="subjBars"></div>
+      <div class="tablewrap"><table id="subjTbl" class="cmp"></table></div>
+    </section>
+
+    <section class="panel jhband" aria-labelledby="h-jhband">
+      <div>
+        <h2 id="h-jhband">來源國中 × 總等第級距</h2>
+        <p class="sub" id="jhbandSub"></p>
+      </div>
+      <div class="legend" id="bandLegend"></div>
+      <div class="axis" aria-hidden="true"><span></span><div class="ticks" id="jbticks"></div><span></span></div>
+      <div class="bars" id="jhBandBars"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-jhavg">
+      <div>
+        <h2 id="h-jhavg">來源國中 × 各科平均等級分</h2>
+        <p class="sub" id="jhavgSub"></p>
+      </div>
+      <div class="divlegend"><span><i class="dot" style="background:var(--pos)"></i>高於同範圍全體平均</span><span><i class="dot" style="background:var(--neg)"></i>低於同範圍全體平均</span><span>顏色越深差距越大；人數少於 5 人的國中以灰字顯示，僅供參考</span></div>
+      <div class="tablewrap"><table id="jhAvgTbl" class="avg"></table></div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-bandcls">
+      <div>
+        <h2 id="h-bandcls">各班級距人數</h2>
+        <p class="sub">「以上」為累計人數；百分比以該班有成績的人數為分母；不受上方篩選影響</p>
+      </div>
+      <div class="tablewrap"><table id="bandClsTbl" class="band"></table></div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-bandjh">
+      <div>
+        <h2 id="h-bandjh">各國中級距人數</h2>
+        <p class="sub" id="bandJhSub"></p>
+      </div>
+      <div class="tablewrap"><table id="bandJhTbl" class="band"></table></div>
+    </section>
+  </div>
+
   <footer id="foot"></footer>
 </div>
 <div class="tip" id="tip" hidden></div>
@@ -416,7 +530,7 @@ const clsLabel = (g,c) => `${g}${String(c).padStart(2,'0')} 班` + (isSpecial(c)
 const TOP2 = ['154505','154506']; // 花崗、國風
 const IDS = DATA.identities || [];
 const INDIG = IDS.indexOf('原住民生');
-const state = {view:'overview', grade:0, cls:0, county:'', ident:-1, sort:'total', dir:-1, prog:0, sgrade:0, tgrade:0, tgroup:0, tribe:-1};
+const state = {view:'overview', grade:0, cls:0, county:'', ident:-1, sort:'total', dir:-1, prog:0, sgrade:0, tgrade:0, tgroup:0, tribe:-1, eprog:0, ecls:0};
 
 function ls(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
@@ -498,9 +612,9 @@ function drawIdentity(el, recs, active){
 // ---- static setup ----
 document.querySelectorAll('.gradeLegend').forEach(el=>el.innerHTML = cohorts.map(c=>`<span><i class="dot" style="background:${GRADE_COLOR[c.grade]}"></i>${c.name}</span>`).join(''));
 document.getElementById('eyebrow').textContent = `${DATA.school}・${DATA.schoolYearRoc} 學年度在校生`;
-document.getElementById('foot').textContent = `資料來源：${cohorts.map(c=>c.name+'學生資料一覽表').join('、')}。班級依座號順序推定；每個年級${PROGRAMS.map(p=>`第 ${p.no} 班為${p.name}`).join('、')}。本頁僅含年級、班級、畢業國中、報部身份與原住民族別的統計，不含學號與姓名。`;
+document.getElementById('foot').textContent = `資料來源：${cohorts.map(c=>c.name+'學生資料一覽表').join('、')}。班級依座號順序推定；每個年級${PROGRAMS.map(p=>`第 ${p.no} 班為${p.name}`).join('、')}。高一入學成績：沒有成績者為特殊管道入學（如體育班、音樂班）或去年出國、今年重讀的學生。本頁僅含年級、班級、畢業國中、報部身份、原住民族別與入學成績等級的統計，不含學號與姓名。`;
 
-const tabs = {overview:document.getElementById('tab-overview'), special:document.getElementById('tab-special'), tribe:document.getElementById('tab-tribe')};
+const tabs = {overview:document.getElementById('tab-overview'), special:document.getElementById('tab-special'), tribe:document.getElementById('tab-tribe'), exam:document.getElementById('tab-exam')};
 Object.entries(tabs).forEach(([k,b])=>b.onclick=()=>{ state.view=k; try{history.replaceState(null,'','#'+k);}catch(e){} render(); });
 
 // overview filters
@@ -875,6 +989,195 @@ function renderTrend(){
 let trendTimer;
 addEventListener('resize', ()=>{ clearTimeout(trendTimer); trendTimer = setTimeout(()=>{ if(state.view==='tribe') renderTrend(); }, 150); });
 
+// ---- 高一入學成績 ----
+const EX = DATA.exam || {subjects:[], levels:[], bands:[]};
+const LV = EX.levels, SUBJ = EX.subjects;
+const BANDS = EX.bands.map(b=>({name:b.band, floor:LV.indexOf(b.lowest_level_at_least)}));
+const LV_COLOR = i => `var(--l${i})`;
+const BAND_COLOR = i => `var(--b${i})`;
+const PT = i => LV.length - i; // 等級分：A++=7、A+=6、A=5、B++=4、B+=3、B=2、C=1
+const MIN_N = 5;
+const bandLabel = (b, cum) => cum && b.name!=='含C' ? `${b.name.replace('以上','')} 以上` : b.name;
+const G1 = DATA.records.filter(r=>r[0]===1 && r[5]!==null && r[5]!==undefined);
+const hasEx = r => Array.isArray(r[5]);
+const lowest = r => Math.max(...r[5]);
+const bandOf = r => BANDS.findIndex(b=>lowest(r) <= b.floor);
+
+const eprogSeg = document.getElementById('eprogSeg');
+[{no:0,name:'全部'}, {no:-1,name:'普通班'}, ...PROGRAMS].forEach(p=>{
+  const b = document.createElement('button'); b.type='button'; b.dataset.v=p.no; b.textContent=p.name;
+  b.onclick = ()=>{ state.eprog=p.no; state.ecls=0; render(); };
+  eprogSeg.appendChild(b);
+});
+const eclsSel = document.getElementById('eclsSel');
+eclsSel.onchange = ()=>{ state.ecls=+eclsSel.value; render(); };
+document.getElementById('levelLegend').innerHTML = LV.map((l,i)=>`<span><i class="dot" style="background:${LV_COLOR(i)}"></i>${l}</span>`).join('');
+
+function bandTable(groups){
+  // groups: [{label, recs}] -> cumulative band table
+  const head = `<thead><tr><th></th><th>有成績</th>${BANDS.map(b=>`<th>${bandLabel(b,true)}</th>`).join('')}<th>無成績</th></tr></thead>`;
+  const body = groups.map(g=>{
+    const sc = g.recs.filter(hasEx), n = sc.length;
+    const cells = BANDS.map((b,bi)=>{
+      const v = bi===BANDS.length-1 ? sc.filter(r=>bandOf(r)===bi).length : sc.filter(r=>bandOf(r)<=bi).length;
+      return `<td class="num">${v}<span class="muted">${n?fmtPct(v,n):''}</span></td>`;
+    }).join('');
+    return `<tr${g.total?' style="font-weight:700"':''}><td>${g.label}</td><td class="num">${n}</td>${cells}<td class="num">${g.recs.length-n||'<span class="zero">·</span>'}</td></tr>`;
+  }).join('');
+  return head + `<tbody>${body}</tbody>`;
+}
+
+function renderExam(){
+  syncSeg(eprogSeg, state.eprog);
+  const classes = [...new Set(G1.map(r=>r[1]))].sort((a,b)=>a-b)
+    .filter(c=>!state.eprog || (state.eprog===-1 ? !isSpecial(c) : c===state.eprog));
+  eclsSel.innerHTML = '<option value="0">全部班級</option>' + classes.map(c=>`<option value="${c}">${clsLabel(1,c)}</option>`).join('');
+  if(!classes.includes(state.ecls)) state.ecls = 0;
+  eclsSel.value = state.ecls; eclsSel.disabled = classes.length<=1;
+
+  const scope = G1.filter(r=>
+    (!state.eprog || (state.eprog===-1 ? !isSpecial(r[1]) : r[1]===state.eprog)) &&
+    (!state.ecls || r[1]===state.ecls));
+  const sc = scope.filter(hasEx), n = sc.length, none = scope.length - n;
+  const scopeLabel = state.ecls ? clsLabel(1,state.ecls) : state.eprog ? (state.eprog===-1?'普通班':ctype(state.eprog)) : '高一全體';
+  document.getElementById('examNote').innerHTML =
+    `<b>${scopeLabel}</b>共 ${scope.length} 人，其中 <b>${n}</b> 人有入學成績；${none ? `<b>${none}</b> 人沒有入學成績（特殊管道入學或重讀），不列入以下統計。` : '全部都有入學成績。'}` +
+    ` 總等第依五科中<b>最低的一科</b>分級：例如五科都在 A 以上為「5A 以上」。`;
+
+  // tiles: cumulative thresholds
+  const cum = bi => sc.filter(r=>bandOf(r)<=bi).length;
+  document.getElementById('etiles').innerHTML = BANDS.slice(0,4).map((b,bi)=>{
+    const v = cum(bi);
+    return `<div class="tile"><span class="k">${bandLabel(b,true)}</span><span class="v"><span class="num">${v}</span><small>人</small></span><span class="d">占有成績 ${n} 人的 ${fmtPct(v,n)}</span></div>`;
+  }).join('');
+
+  // band bars (exclusive)
+  const bc = BANDS.map((b,bi)=>sc.filter(r=>bandOf(r)===bi).length);
+  const bmax = niceMax(Math.max(1,...bc));
+  document.getElementById('bandSub').textContent = `${scopeLabel}，有成績 ${n} 人；每人依最低一科只歸入一個級距`;
+  document.getElementById('bticks').innerHTML = [0,.25,.5,.75,1].map(f=>`<span class="num" style="left:${f*100}%">${Math.round(bmax*f)}</span>`).join('');
+  const bandBars = document.getElementById('bandBars');
+  bandBars.innerHTML = n ? BANDS.map((b,bi)=>{
+    const c = cum(bi);
+    return `<div class="row" data-i="${bi}" tabindex="0">
+      <div class="name">${b.name}<em>${bi<BANDS.length-1 ? `累計 ${c} 人` : '至少一科 C'}</em></div>
+      <div class="track"><div class="stack">${bc[bi]?`<i style="width:calc(${bc[bi]/bmax*100}% - 2px);background:${BAND_COLOR(bi)};border-radius:0 4px 4px 0"></i>`:''}</div></div>
+      <div class="val num">${bc[bi]}<span>${fmtPct(bc[bi],n)}</span></div></div>`;
+  }).join('') : '<div class="empty">這個範圍沒有入學成績</div>';
+  bandBars.querySelectorAll('.row').forEach(el=>{
+    const bi = +el.dataset.i, b = BANDS[bi];
+    const desc = bi===BANDS.length-1 ? '至少有一科為 C' : bi===0 ? `五科都在 ${LV[b.floor]} 以上` : `最低一科為 ${LV[b.floor]}`;
+    bindTip(el, `<b>${b.name}</b><div style="opacity:.75;margin-bottom:4px">${desc}</div>` +
+      `<div class="tl"><span>本級距</span><span class="num">${bc[bi]} 人・${fmtPct(bc[bi],n)}</span></div>` +
+      (bi<BANDS.length-1 ? `<div class="tl"><span>${bandLabel(b,true)}（累計）</span><span class="num">${cum(bi)} 人・${fmtPct(cum(bi),n)}</span></div>` : ''));
+  });
+
+  // A count
+  const ac = [5,4,3,2,1,0].map(k=>[k, sc.filter(r=>r[5].filter(v=>v<=LV.indexOf('A')).length===k).length]);
+  const amax = Math.max(1, ...ac.map(x=>x[1]));
+  document.getElementById('aclist').innerHTML = n ? ac.map(([k,v])=>
+    `<div class="crow"><div class="top"><b>${k} 科 A</b><span class="num">${v} 人・${fmtPct(v,n)}</span></div><div class="cbar"><i style="width:${v/amax*100}%"></i></div></div>`).join('') : '<div class="empty">沒有資料</div>';
+
+  // no-score breakdown by class
+  const nm = {}; scope.filter(r=>!hasEx(r)).forEach(r=>{ nm[r[1]] = (nm[r[1]]||0)+1; });
+  const nl = Object.entries(nm).sort((a,b)=>b[1]-a[1]);
+  const nmax = Math.max(1, ...nl.map(x=>x[1]));
+  document.getElementById('nolist').innerHTML = nl.length ? nl.map(([c,v])=>
+    `<div class="crow"><div class="top"><b>${clsLabel(1,+c)}</b><span class="num">${v} 人</span></div><div class="cbar"><i style="width:${v/nmax*100}%;background:var(--ink-3)"></i></div></div>`).join('') : '<div class="empty">這個範圍沒有</div>';
+
+  // subjects 100% stacked
+  document.getElementById('subjSub').textContent = `${scopeLabel}，有成績 ${n} 人；每條長條為該科各等級的比例（100%）`;
+  document.getElementById('sjticks').innerHTML = [0,.25,.5,.75,1].map(f=>`<span class="num" style="left:${f*100}%">${f*100}%</span>`).join('');
+  const sjc = SUBJ.map((k,si)=>{ const c = LV.map(()=>0); sc.forEach(r=>c[r[5][si]]++); return c; });
+  const subjBars = document.getElementById('subjBars');
+  subjBars.innerHTML = n ? SUBJ.map((k,si)=>{
+    const segs = sjc[si].map((v,li)=>v?`<i style="width:calc(${v/n*100}% - 2px);background:${LV_COLOR(li)}"></i>`:'').join('');
+    const aPlus = sjc[si].slice(0, LV.indexOf('A')+1).reduce((a,b)=>a+b,0);
+    return `<div class="row" data-i="${si}" tabindex="0"><div class="name">${k}<em>A 以上 ${fmtPct(aPlus,n)}</em></div><div class="track"><div class="stack">${segs}</div></div><div class="val num">${n}</div></div>`;
+  }).join('') : '<div class="empty">這個範圍沒有入學成績</div>';
+  subjBars.querySelectorAll('.row').forEach(el=>{
+    const si = +el.dataset.i;
+    bindTip(el, `<b>${SUBJ[si]}</b>` + LV.map((l,li)=>`<div class="tl"><span><i class="dot" style="background:${LV_COLOR(li)}"></i>${l}</span><span class="num">${sjc[si][li]} 人・${fmtPct(sjc[si][li],n)}</span></div>`).join(''));
+  });
+  document.getElementById('subjTbl').innerHTML =
+    `<thead><tr><th></th>${LV.map(l=>`<th scope="col">${l}</th>`).join('')}</tr></thead>
+    <tbody>${SUBJ.map((k,si)=>`<tr><th scope="row">${k}</th>${sjc[si].map(v=>`<td class="num">${v||'<span class="zero">·</span>'}<span class="muted">${v?fmtPct(v,n):''}</span></td>`).join('')}</tr>`).join('')}</tbody>`;
+
+  // by class (not filtered)
+  const allCls = [...new Set(G1.map(r=>r[1]))].sort((a,b)=>a-b);
+  document.getElementById('bandClsTbl').innerHTML = bandTable([
+    ...allCls.map(c=>({label:clsLabel(1,c), recs:G1.filter(r=>r[1]===c)})),
+    {label:'高一合計', recs:G1, total:true},
+  ]);
+
+  // by junior high (filtered)
+  const jm = {}; scope.forEach(r=>{ (jm[r[2]] ||= []).push(r); });
+  const jl = Object.entries(jm).sort((a,b)=>b[1].filter(hasEx).length-a[1].filter(hasEx).length || b[1].length-a[1].length || a[0].localeCompare(b[0]));
+  document.getElementById('bandJhSub').textContent = `${scopeLabel}；「以上」為累計人數，百分比以該校有成績的人數為分母`;
+  document.getElementById('bandJhTbl').innerHTML = bandTable([
+    ...jl.map(([code,recs])=>({label:`${esc(shortName(DATA.schools[code].name))}<span class="muted">${DATA.schools[code].county}</span>`, recs})),
+    {label:'合計', recs:scope, total:true},
+  ]);
+
+  renderExamByJh(scope, scopeLabel);
+}
+
+function renderExamByJh(scope, scopeLabel){
+  document.getElementById('bandLegend').innerHTML = BANDS.map((b,i)=>`<span><i class="dot" style="background:${BAND_COLOR(i)}"></i>${b.name}</span>`).join('');
+  const sc = scope.filter(hasEx);
+  const jm = {}; sc.forEach(r=>{ (jm[r[2]] ||= []).push(r); });
+  const list = Object.entries(jm).sort((a,b)=>b[1].length-a[1].length || a[0].localeCompare(b[0]));
+  const big = list.filter(([,rs])=>rs.length>=MIN_N);
+  const small = list.filter(([,rs])=>rs.length<MIN_N);
+  const smallRecs = small.flatMap(([,rs])=>rs);
+
+  // 100% stacked band bars
+  const groups = [
+    ...big.map(([code,rs])=>({label:esc(shortName(DATA.schools[code].name)), sub:DATA.schools[code].county, recs:rs})),
+    ...(smallRecs.length ? [{label:'其他國中', sub:`${small.length} 所，各不到 ${MIN_N} 人`, recs:smallRecs}] : []),
+    {label:'全體', sub:scopeLabel, recs:sc, total:true},
+  ];
+  document.getElementById('jhbandSub').textContent = `${scopeLabel}，有成績 ${sc.length} 人；有 ${MIN_N} 人以上的國中單獨列出，其餘合併為「其他國中」`;
+  document.getElementById('jbticks').innerHTML = [0,.25,.5,.75,1].map(f=>`<span class="num" style="left:${f*100}%">${f*100}%</span>`).join('');
+  const el = document.getElementById('jhBandBars');
+  el.innerHTML = sc.length ? groups.map((g,gi)=>{
+    const n = g.recs.length, c = BANDS.map((b,bi)=>g.recs.filter(r=>bandOf(r)===bi).length);
+    const segs = c.map((v,bi)=>v?`<i style="width:calc(${v/n*100}% - 2px);background:${BAND_COLOR(bi)}"></i>`:'').join('');
+    return `<div class="row${g.total?' total':''}" data-i="${gi}" tabindex="0"><div class="name">${g.label}<em>${g.sub}</em></div><div class="track"><div class="stack">${segs}</div></div><div class="val num">${n}</div></div>`;
+  }).join('') : '<div class="empty">這個範圍沒有入學成績</div>';
+  el.querySelectorAll('.row').forEach(row=>{
+    const g = groups[+row.dataset.i], n = g.recs.length;
+    const c = BANDS.map((b,bi)=>g.recs.filter(r=>bandOf(r)===bi).length);
+    let acc = 0;
+    bindTip(row, `<b>${g.label}</b><div style="opacity:.75;margin-bottom:4px">有成績 ${n} 人</div>` +
+      BANDS.map((b,bi)=>{ acc += c[bi]; return `<div class="tl"><span><i class="dot" style="background:${BAND_COLOR(bi)}"></i>${b.name}</span><span class="num">${c[bi]} 人・${fmtPct(c[bi],n)}${bi<BANDS.length-2?`（累計 ${fmtPct(acc,n)}）`:''}</span></div>`; }).join(''));
+  });
+
+  // subject average heat table
+  const avg = rs => SUBJ.map((k,si)=>rs.reduce((t,r)=>t+PT(r[5][si]),0)/rs.length);
+  const total = rs => rs.reduce((t,r)=>t+r[5].reduce((u,v)=>u+PT(v),0),0)/rs.length;
+  const base = sc.length ? avg(sc) : SUBJ.map(()=>0), baseT = sc.length ? total(sc) : 0;
+  const cell = (v, ref, span, dim) => {
+    const dlt = v - ref, a = dim ? 0 : Math.min(55, Math.round(Math.abs(dlt)/span*55));
+    const bg = a ? `color-mix(in srgb, var(${dlt>0?'--pos':'--neg'}) ${a}%, transparent)` : 'transparent';
+    return `<td class="num heat" style="background:${bg}">${v.toFixed(2)}</td>`;
+  };
+  document.getElementById('jhavgSub').textContent = `${scopeLabel}；等級分換算 A++=7、A+=6、A=5、B++=4、B+=3、B=2、C=1，五科合計滿分 35`;
+  const rowsHtml = list.map(([code,rs])=>{
+    const dim = rs.length<MIN_N, a = avg(rs);
+    const cum = bi => rs.filter(r=>bandOf(r)<=bi).length;
+    return `<tr class="${dim?'small':''}"><td>${esc(shortName(DATA.schools[code].name))}<span class="muted">${DATA.schools[code].county}</span></td><td class="num">${rs.length}</td>
+      ${a.map((v,si)=>cell(v, base[si], 1.5, dim)).join('')}${cell(total(rs), baseT, 5, dim)}
+      <td class="num">${fmtPct(cum(0),rs.length)}</td><td class="num">${fmtPct(cum(1),rs.length)}</td><td class="num">${fmtPct(rs.filter(r=>bandOf(r)===BANDS.length-1).length,rs.length)}</td></tr>`;
+  }).join('');
+  document.getElementById('jhAvgTbl').innerHTML = sc.length ?
+    `<thead><tr><th>國中</th><th>人數</th>${SUBJ.map(k=>`<th>${k}</th>`).join('')}<th>五科合計</th><th>5A 以上</th><th>5B++ 以上</th><th>含C</th></tr></thead>
+    <tbody>${rowsHtml}</tbody>
+    <tfoot><tr><td>全體</td><td class="num">${sc.length}</td>${base.map(v=>`<td class="num">${v.toFixed(2)}</td>`).join('')}<td class="num">${baseT.toFixed(2)}</td>
+      <td class="num">${fmtPct(sc.filter(r=>bandOf(r)<=0).length,sc.length)}</td><td class="num">${fmtPct(sc.filter(r=>bandOf(r)<=1).length,sc.length)}</td><td class="num">${fmtPct(sc.filter(r=>bandOf(r)===BANDS.length-1).length,sc.length)}</td></tr></tfoot>`
+    : '<tbody><tr><td class="empty">這個範圍沒有入學成績</td></tr></tbody>';
+}
+
 // ---- render ----
 function render(){
   hideTip();
@@ -882,11 +1185,16 @@ function render(){
   document.getElementById('view-overview').hidden = state.view!=='overview';
   document.getElementById('view-special').hidden = state.view!=='special';
   document.getElementById('view-tribe').hidden = state.view!=='tribe';
+  document.getElementById('view-exam').hidden = state.view!=='exam';
   const lede = document.getElementById('lede');
   if(state.view==='overview'){
     document.getElementById('pageTitle').textContent = '學生從哪些國中來？';
     lede.textContent = `統計 ${cohorts.map(c=>c.entryYear).join('、')} 年入學的三屆學生（目前的高三、高二、高一）畢業於哪些國中。可依年級、班級、國中所在縣市與報部身份篩選。`;
     renderOverview();
+  } else if(state.view==='exam'){
+    document.getElementById('pageTitle').textContent = '高一入學成績分布';
+    lede.textContent = `${cohorts.find(c=>c.grade===1).entryYear} 年入學的高一學生，國文、英文、數學、社會、自然五科的入學等級（A++ 最高，依序為 A+、A、B++、B+、B、C），以及依最低一科分出的總等第級距。`;
+    renderExam();
   } else if(state.view==='tribe'){
     document.getElementById('pageTitle').textContent = '原住民學生的族別與來源';
     lede.textContent = `依原住民族別學生資料一覽表，分析原住民學生在各班別、各年級的族別組成，以及各族學生畢業於哪些國中。`;
@@ -897,7 +1205,7 @@ function render(){
     lede.textContent = `每個年級有三個特殊班：${PROGRAMS.map(p=>`第 ${p.no} 班${p.name}`).join('、')}。這一頁只分析這三班的學生，並與普通班比較來源國中的分布。`;
     renderSpecial();
   }
-  ls('jh.state', JSON.stringify({grade:state.grade, county:state.county, ident:state.ident, prog:state.prog, sgrade:state.sgrade, tgrade:state.tgrade, tgroup:state.tgroup, tribe:state.tribe}));
+  ls('jh.state', JSON.stringify({grade:state.grade, county:state.county, ident:state.ident, prog:state.prog, sgrade:state.sgrade, tgrade:state.tgrade, tgroup:state.tgroup, tribe:state.tribe, eprog:state.eprog, ecls:state.ecls}));
 }
 
 // restore
@@ -911,8 +1219,11 @@ try{
   if([0,1,2,3].includes(s.tgrade)) state.tgrade = s.tgrade;
   if([0,1].includes(s.tgroup)) state.tgroup = s.tgroup;
   if(Number.isInteger(s.tribe) && s.tribe>=-1 && s.tribe<TRIBES.length) state.tribe = s.tribe;
+  if([0,-1,...PROGRAMS.map(p=>p.no)].includes(s.eprog)) state.eprog = s.eprog;
+  if(Number.isInteger(s.ecls)) state.ecls = s.ecls;
 }catch(e){}
 if(location.hash==='#special') state.view='special';
 if(location.hash==='#tribe') state.view='tribe';
+if(location.hash==='#exam') state.view='exam';
 render();
 </script>
