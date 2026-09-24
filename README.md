@@ -24,7 +24,7 @@ uv run build_dashboard.py       # students.json → index.html
 | `全校學生資料報部身份一覽表.xlsx` | 分頁報表，每頁開頭是班級代號，下面列出座號、學號、姓名、報部身份 |
 | `原住民族別學生資料一覽表_YYYYMMDD.xlsx` | 欄位有學號、座號、姓名、原住民族別 |
 | `build_students_json.py` | 讀取上面的 Excel，合併後產生 `students.json` |
-| `students.json` | 整理好的學生資料，含姓名，**請勿公開** |
+| `students.json` | 整理好的學生資料。基於資訊安全**不含姓名**，但仍有學號與身份資料，請妥善保管 |
 | `build_dashboard.py` | 讀取 `students.json`，把統計用的欄位嵌入網頁範本 |
 | `index.template.html` | 網頁範本，要修改網頁請改這個檔案 |
 | `index.html` | 產生出來的網頁，可以直接用瀏覽器開啟 |
@@ -74,8 +74,6 @@ uv run build_dashboard.py       # students.json → index.html
 | `class_type` | `"普通班"` | 普通班、音樂班、數理資優班、體育班 |
 | `is_special_class` | `false` | 是否為特殊班（第 10–12 班） |
 | `seat_no` | `1` | 座號 |
-| `name` | `"何彥澄"` | 姓名（原始欄位） |
-| `name_zh` / `name_indigenous` | `"林宥漢"` / `"Utun･Aling"` | 姓名欄若是「漢名＋族名」，從第一個英文字母切開；沒有族名時 `name_indigenous` 為 `null` |
 | `junior_high.code` | `"154506"` | 畢業國中代碼 |
 | `junior_high.name` | `"花蓮縣立國風國中"` | 畢業國中校名 |
 | `junior_high.county` | `"花蓮縣"` | 國中所在縣市（取校名前三字） |
@@ -85,6 +83,8 @@ uv run build_dashboard.py       # students.json → index.html
 | `indigenous_tribe` | `"阿美族"` | 原住民族別；非原住民學生為 `null` |
 
 ## 資料處理規則
+
+- **姓名**：基於資訊安全，`students.json` 不含學生姓名。程式讀取 Excel 時會暫時使用姓名，和報部身份表、族別表交叉比對，寫出 JSON 前全部移除；姓名不一致的警告也只會列出學號。
 
 - **班級**：年級名單沒有班級欄位，程式依檔案列序推算：座號每次重新從 01 開始，就算下一班。推算結果已經和報部身份表上的正式班級代號逐筆比對，全部一致。
 - **特殊班**：每個年級第 10 班是音樂班、第 11 班是數理資優班、第 12 班是體育班。設定在 `build_students_json.py` 的 `SPECIAL_CLASSES`。
