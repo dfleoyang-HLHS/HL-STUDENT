@@ -1,0 +1,918 @@
+<title>花中新生國中來源</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap">
+<style>
+:root{
+  --bg:#f7f8f7; --surface:#ffffff; --ink:#15191c; --ink-2:#50575c; --ink-3:#848b90;
+  --line:#e3e6e5; --grid:#eceeed; --chip:#eef1f0; --accent:#1f5e57;
+  --g3:#2a78d6; --g2:#eb6834; --g1:#1baf7a;
+  --t0:#2a78d6; --t1:#eb6834; --t2:#1baf7a; --t3:#eda100; --t4:#e87ba4; --t5:#a3a8ab;
+  --tip-bg:#15191c; --tip-ink:#f5f7f6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#131615; --surface:#1b1f1e; --ink:#eef1f0; --ink-2:#b4bbb9; --ink-3:#7f8886;
+    --line:#2c3331; --grid:#262c2a; --chip:#242a28; --accent:#7cc7b9;
+    --g3:#3987e5; --g2:#d95926; --g1:#199e70;
+    --t0:#3987e5; --t1:#d95926; --t2:#199e70; --t3:#c98500; --t4:#d55181; --t5:#686f73;
+    --tip-bg:#eef1f0; --tip-ink:#131615;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#131615; --surface:#1b1f1e; --ink:#eef1f0; --ink-2:#b4bbb9; --ink-3:#7f8886;
+  --line:#2c3331; --grid:#262c2a; --chip:#242a28; --accent:#7cc7b9;
+  --g3:#3987e5; --g2:#d95926; --g1:#199e70;
+  --t0:#3987e5; --t1:#d95926; --t2:#199e70; --t3:#c98500; --t4:#d55181; --t5:#686f73;
+  --tip-bg:#eef1f0; --tip-ink:#131615;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;font-size:15px;line-height:1.6;padding-inline:16px;padding-block:28px 48px}
+.wrap{max-width:1080px;margin:0 auto;display:grid;gap:28px}
+header{display:grid;gap:6px}
+.eyebrow{font-size:12.5px;letter-spacing:.12em;color:var(--accent);font-weight:700}
+h1{font-family:"Noto Serif TC","Songti TC",serif;font-weight:900;font-size:clamp(26px,4.4vw,38px);line-height:1.25;margin:0;text-wrap:balance}
+.lede{color:var(--ink-2);margin:0;max-width:62ch}
+h2{font-family:"Noto Serif TC","Songti TC",serif;font-size:20px;margin:0;text-wrap:balance}
+.sub{color:var(--ink-3);font-size:13px;margin:2px 0 0}
+.num{font-variant-numeric:tabular-nums}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:10px;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.fgroup{display:grid;gap:4px}
+.flabel{font-size:12px;color:var(--ink-3);letter-spacing:.06em}
+.seg{display:flex;background:var(--chip);border-radius:8px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{font:inherit;font-size:14px;border:0;background:transparent;color:var(--ink-2);padding:5px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.seg button:focus-visible,select:focus-visible,th button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.dot{width:9px;height:9px;border-radius:2px;display:inline-block;flex:none}
+select{font:inherit;font-size:14px;color:var(--ink);background:var(--chip);border:0;border-radius:8px;padding:7px 10px;min-width:9em}
+select:disabled{opacity:.5}
+
+/* stat tiles */
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:2px;align-content:start}
+.tile .k{font-size:12.5px;color:var(--ink-3)}
+.tile .v{font-size:28px;font-weight:700;line-height:1.2}
+.tile .v small{font-size:14px;font-weight:500;color:var(--ink-2);margin-left:2px}
+.tile .d{font-size:12.5px;color:var(--ink-2)}
+@media (max-width:760px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.filters{position:static}}
+
+/* panels */
+.grid2{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:860px){.grid2{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 18px 14px;display:grid;gap:14px;min-width:0}
+.phead{display:flex;justify-content:space-between;align-items:start;gap:12px;flex-wrap:wrap}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.legend span{display:flex;align-items:center;gap:6px}
+
+/* bar chart */
+.bars{display:grid;gap:3px}
+.row{display:grid;grid-template-columns:9.5em minmax(0,1fr) 6.2em;gap:10px;align-items:center;padding:3px 4px;border-radius:6px;cursor:default}
+.row:hover,.row.hl{background:var(--chip)}
+.row .name{font-size:14px;line-height:1.3;overflow-wrap:anywhere}
+.row .name em{display:block;font-style:normal;font-size:11.5px;color:var(--ink-3)}
+.track{position:relative;height:18px;background-image:linear-gradient(to right,var(--grid) 1px,transparent 1px);background-size:25% 100%;background-position:-1px 0}
+.stack{display:flex;gap:2px;height:100%}
+.stack i{display:block;height:100%;min-width:0}
+.stack i:last-child{border-radius:0 4px 4px 0}
+.row .val{font-size:13.5px;text-align:right;color:var(--ink)}
+.row .val span{color:var(--ink-3);font-size:12px;margin-left:4px}
+.axis{display:grid;grid-template-columns:9.5em minmax(0,1fr) 6.2em;gap:10px;padding:0 4px;font-size:11.5px;color:var(--ink-3)}
+.axis .ticks{position:relative;height:14px}
+.axis .ticks span{position:absolute;transform:translateX(-50%)}
+.axis .ticks span:first-child{transform:none}
+@media (max-width:520px){
+  .row,.axis{grid-template-columns:6.8em minmax(0,1fr) 5.2em;gap:8px}
+  .row .val span{display:none}
+}
+.empty{color:var(--ink-3);padding:24px 0;text-align:center}
+
+/* county list */
+.clist{display:grid;gap:10px}
+.crow{display:grid;gap:4px}
+.crow .top{display:flex;justify-content:space-between;font-size:14px}
+.crow .top b{font-weight:500}
+.crow .top span{color:var(--ink-2)}
+.cbar{height:8px;background:var(--chip);border-radius:4px;overflow:hidden}
+.cbar i{display:block;height:100%;background:var(--accent);border-radius:0 4px 4px 0}
+.own{display:flex;gap:8px;flex-wrap:wrap}
+.own div{background:var(--chip);border-radius:8px;padding:8px 12px;display:grid;min-width:6.5em}
+.own b{font-size:18px}
+.own span{font-size:12px;color:var(--ink-3)}
+
+/* table */
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:620px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-size:12.5px;color:var(--ink-3);font-weight:500}
+th button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+th button[data-active="true"]{color:var(--ink);font-weight:700}
+td .muted{color:var(--ink-3);font-size:12px;margin-left:6px}
+.delta{font-size:12.5px}
+.up{color:#0c8a2e}.down{color:#c23a3a}
+:root[data-theme="dark"] .up{color:#56c46e} :root[data-theme="dark"] .down{color:#ec7a7a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .up{color:#56c46e}:root:not([data-theme="light"]) .down{color:#ec7a7a}}
+tfoot td{font-weight:700;border-bottom:0}
+
+.tip{position:fixed;pointer-events:none;background:var(--tip-bg);color:var(--tip-ink);border-radius:8px;padding:9px 12px;font-size:13px;line-height:1.5;z-index:20;max-width:240px;box-shadow:0 6px 18px rgba(0,0,0,.2)}
+.tip b{display:block;font-size:14px;margin-bottom:2px}
+.tip .tl{display:flex;justify-content:space-between;gap:14px;align-items:center}
+.tip .tl span:first-child{display:flex;align-items:center;gap:6px}
+footer{color:var(--ink-3);font-size:12.5px}
+@media (prefers-reduced-motion:no-preference){.stack i,.cbar i{transition:width .35s ease}}
+
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--line);margin-bottom:-8px}
+@media (max-width:520px){.tabs button{padding:8px 10px 9px;font-size:14.5px}}
+.tabs button{font:inherit;font-size:15px;background:none;border:0;border-bottom:3px solid transparent;color:var(--ink-2);padding:8px 14px 9px;cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--accent)}
+.tabs button:focus-visible,.pcard:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.view{display:grid;gap:28px}
+.side{display:grid;gap:20px;min-width:0}
+
+/* program cards */
+.pcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.pcards{grid-template-columns:minmax(0,1fr)}}
+.pcard{font:inherit;color:inherit;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:10px;cursor:pointer;align-content:start}
+.pcard:hover{border-color:var(--ink-3)}
+.pcard[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.pname{font-family:"Noto Serif TC","Songti TC",serif;font-weight:700;font-size:19px;display:flex;align-items:baseline;gap:8px}
+.pname small{font-family:"Noto Sans TC",sans-serif;font-weight:400;font-size:12px;color:var(--ink-3)}
+.pbig{font-size:32px;font-weight:700;line-height:1.1}
+.pbig small{font-size:13px;font-weight:400;color:var(--ink-2);margin-left:4px}
+.pgr{display:flex;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.pgr span{display:flex;align-items:center;gap:5px}
+.pgr b{color:var(--ink)}
+.pfacts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;border-top:1px solid var(--line);padding-top:10px}
+.pfacts span{display:grid;gap:1px;min-width:0}
+.pfacts em{font-style:normal;font-size:11.5px;color:var(--ink-3)}
+.pfacts b{font-size:13.5px;font-weight:500;overflow-wrap:anywhere}
+
+/* comparison + matrix */
+table.cmp{min-width:640px}
+table.cmp th[scope="row"]{text-align:left;color:var(--ink-2);font-size:13.5px;font-weight:500}
+table.cmp thead th,table.matrix thead th{color:var(--ink-2);font-weight:700;font-size:13px}
+table.cmp th.on,table.matrix th.on{color:var(--accent)}
+table.cmp td:nth-child(2),table.cmp th:nth-child(2){background:var(--chip)}
+table.matrix{min-width:600px}
+table.matrix td.heat{border-bottom:2px solid var(--surface);border-left:2px solid var(--surface)}
+table.matrix td.strong{font-weight:700}
+table.matrix th.ref,table.matrix td:last-child{color:var(--ink-3)}
+.zero{color:var(--ink-3)}
+
+/* tribe tab */
+.comp .row{grid-template-columns:9.5em minmax(0,1fr) 3.4em}
+.comp .axis{grid-template-columns:9.5em minmax(0,1fr) 3.4em}
+.comp .track{height:22px}
+.comp .row.total{border-top:1px solid var(--line);border-radius:0 0 6px 6px;margin-top:4px;padding-top:7px}
+@media (max-width:520px){.comp .row,.comp .axis{grid-template-columns:6.8em minmax(0,1fr) 2.8em}}
+table.tmatrix{min-width:760px}
+table.tmatrix td.heat{border-bottom:2px solid var(--surface);border-left:2px solid var(--surface)}
+table.tmatrix td.strong{font-weight:700}
+.tribe-note{font-size:12.5px;color:var(--ink-3);margin:0}
+
+/* tribe trend */
+.chartwrap{position:relative;min-width:0}
+.chartwrap svg{display:block;width:100%;height:auto;overflow:visible}
+.chartwrap text{font-family:inherit}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1 id="pageTitle">學生從哪些國中來？</h1>
+    <p class="lede" id="lede"></p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="分頁">
+    <button type="button" role="tab" id="tab-overview" aria-controls="view-overview">全校總覽</button>
+    <button type="button" role="tab" id="tab-special" aria-controls="view-special">特殊班分析</button>
+    <button type="button" role="tab" id="tab-tribe" aria-controls="view-tribe">原住民族別</button>
+  </nav>
+
+  <!-- ===== 全校總覽 ===== -->
+  <div class="view" id="view-overview" role="tabpanel" aria-labelledby="tab-overview">
+    <div class="filters" role="group" aria-label="篩選">
+      <div class="fgroup">
+        <span class="flabel">年級</span>
+        <div class="seg" id="gradeSeg"></div>
+      </div>
+      <div class="fgroup">
+        <label class="flabel" for="classSel">班級</label>
+        <select id="classSel"></select>
+      </div>
+      <div class="fgroup">
+        <label class="flabel" for="countySel">國中所在縣市</label>
+        <select id="countySel"></select>
+      </div>
+      <div class="fgroup">
+        <label class="flabel" for="identSel">報部身份</label>
+        <select id="identSel"></select>
+      </div>
+    </div>
+
+    <section class="tiles" id="tiles" aria-label="摘要"></section>
+
+    <div class="grid2">
+      <section class="panel" aria-labelledby="h-bars">
+        <div class="phead">
+          <div>
+            <h2 id="h-bars">各國中來源人數</h2>
+            <p class="sub" id="barsSub"></p>
+          </div>
+          <div class="legend gradeLegend"></div>
+        </div>
+        <div class="axis" aria-hidden="true"><span></span><div class="ticks" id="ticks"></div><span></span></div>
+        <div class="bars" id="bars"></div>
+      </section>
+
+      <div class="side">
+        <section class="panel" aria-labelledby="h-ident">
+          <div>
+            <h2 id="h-ident">報部身份</h2>
+            <p class="sub" id="identSub"></p>
+          </div>
+          <div class="clist" id="ilist"></div>
+        </section>
+        <section class="panel" aria-labelledby="h-county">
+          <div>
+            <h2 id="h-county">國中所在縣市</h2>
+            <p class="sub">依畢業國中所在縣市統計</p>
+          </div>
+          <div class="clist" id="clist"></div>
+        </section>
+        <section class="panel" aria-labelledby="h-own">
+          <div>
+            <h2 id="h-own">公私立別</h2>
+            <p class="sub">畢業國中的設立別</p>
+          </div>
+          <div class="own" id="own"></div>
+        </section>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="h-table">
+      <div>
+        <h2 id="h-table">三屆逐校比較</h2>
+        <p class="sub">點欄位名稱可排序；「高一較高三」比較兩屆招收人數的增減（依目前的縣市與報部身份篩選，不受年級與班級影響）</p>
+      </div>
+      <div class="tablewrap"><table id="tbl"></table></div>
+    </section>
+  </div>
+
+  <!-- ===== 特殊班分析 ===== -->
+  <div class="view" id="view-special" role="tabpanel" aria-labelledby="tab-special" hidden>
+    <div class="filters" role="group" aria-label="特殊班篩選">
+      <div class="fgroup">
+        <span class="flabel">班別</span>
+        <div class="seg" id="progSeg"></div>
+      </div>
+      <div class="fgroup">
+        <span class="flabel">年級</span>
+        <div class="seg" id="sgradeSeg"></div>
+      </div>
+    </div>
+
+    <section class="pcards" id="pcards" aria-label="三個特殊班摘要"></section>
+
+    <section class="panel" aria-labelledby="h-cmp">
+      <div>
+        <h2 id="h-cmp">特殊班與普通班比較</h2>
+        <p class="sub" id="cmpSub"></p>
+      </div>
+      <div class="tablewrap"><table id="cmp" class="cmp"></table></div>
+    </section>
+
+    <div class="grid2">
+      <section class="panel" aria-labelledby="h-sbars">
+        <div class="phead">
+          <div>
+            <h2 id="h-sbars">來源國中</h2>
+            <p class="sub" id="sbarsSub"></p>
+          </div>
+          <div class="legend gradeLegend"></div>
+        </div>
+        <div class="axis" aria-hidden="true"><span></span><div class="ticks" id="sticks"></div><span></span></div>
+        <div class="bars" id="sbars"></div>
+      </section>
+      <div class="side">
+        <section class="panel" aria-labelledby="h-scounty">
+          <div>
+            <h2 id="h-scounty">國中所在縣市</h2>
+            <p class="sub" id="scountySub"></p>
+          </div>
+          <div class="clist" id="sclist"></div>
+        </section>
+        <section class="panel" aria-labelledby="h-sident">
+          <div>
+            <h2 id="h-sident">報部身份</h2>
+            <p class="sub" id="sidentSub"></p>
+          </div>
+          <div class="clist" id="silist"></div>
+        </section>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="h-matrix">
+      <div>
+        <h2 id="h-matrix">各國中在各班別的人數</h2>
+        <p class="sub" id="matrixSub"></p>
+      </div>
+      <div class="tablewrap"><table id="matrix" class="matrix"></table></div>
+    </section>
+  </div>
+
+  <!-- ===== 原住民族別 ===== -->
+  <div class="view" id="view-tribe" role="tabpanel" aria-labelledby="tab-tribe" hidden>
+    <div class="filters" role="group" aria-label="族別篩選">
+      <div class="fgroup">
+        <span class="flabel">年級</span>
+        <div class="seg" id="tgradeSeg"></div>
+      </div>
+    </div>
+
+    <section class="tiles" id="ttiles" aria-label="族別摘要"></section>
+
+    <section class="panel comp" aria-labelledby="h-comp">
+      <div class="phead">
+        <div>
+          <h2 id="h-comp">族別組成</h2>
+          <p class="sub" id="compSub"></p>
+        </div>
+        <div class="seg" id="groupSeg" role="group" aria-label="分組方式"></div>
+      </div>
+      <div class="legend tribeLegend"></div>
+      <div class="axis" aria-hidden="true"><span></span><div class="ticks" id="cticks"></div><span></span></div>
+      <div class="bars" id="compBars"></div>
+      <div class="tablewrap"><table id="compTbl" class="cmp"></table></div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-trend">
+      <div>
+        <h2 id="h-trend">各族在各年級的人數變化</h2>
+        <p class="sub">由左到右為 2024、2025、2026 年入學（目前的高三、高二、高一）；不受上方年級篩選影響</p>
+      </div>
+      <div class="legend tribeLegend"></div>
+      <div class="chartwrap" id="trendWrap"><svg id="trendSvg" role="img" aria-label="各族在各年級的人數折線圖"></svg></div>
+      <div class="tablewrap"><table id="trendTbl"></table></div>
+    </section>
+
+    <div class="grid2">
+      <section class="panel" aria-labelledby="h-tbars">
+        <div class="phead">
+          <div>
+            <h2 id="h-tbars">各族學生來自哪些國中</h2>
+            <p class="sub" id="tbarsSub"></p>
+          </div>
+          <div class="fgroup">
+            <label class="flabel" for="tribeSel">族別</label>
+            <select id="tribeSel"></select>
+          </div>
+        </div>
+        <div class="legend tribeLegend"></div>
+        <div class="axis" aria-hidden="true"><span></span><div class="ticks" id="tticks"></div><span></span></div>
+        <div class="bars" id="tbars"></div>
+      </section>
+      <div class="side">
+        <section class="panel" aria-labelledby="h-tcounty">
+          <div>
+            <h2 id="h-tcounty">國中所在縣市</h2>
+            <p class="sub" id="tcountySub"></p>
+          </div>
+          <div class="clist" id="tclist"></div>
+        </section>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="h-tmatrix">
+      <div>
+        <h2 id="h-tmatrix">各國中 × 族別人數</h2>
+        <p class="sub" id="tmatrixSub"></p>
+      </div>
+      <div class="tablewrap"><table id="tmatrix" class="tmatrix"></table></div>
+    </section>
+  </div>
+
+  <footer id="foot"></footer>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const DATA = {"school":"國立花蓮高級中學","schoolYearRoc":115,"cohorts":[{"grade":3,"name":"高三","entryYear":2024},{"grade":2,"name":"高二","entryYear":2025},{"grade":1,"name":"高一","entryYear":2026}],"classTypes":{"10":"音樂班","11":"數理資優班","12":"體育班"},"identities":["一般生","原住民生","身心障礙學生適性輔導安置","身心障礙生"],"tribes":["阿美族","太魯閣族","布農族","排灣族","卑南族","泰雅族","撒奇萊雅族","賽德克族","噶瑪蘭族","賽夏族"],"schools":{"154506":{"name":"花蓮縣立國風國中","county":"花蓮縣","ownership":"公立"},"154501":{"name":"花蓮縣立玉里國中","county":"花蓮縣","ownership":"公立"},"154505":{"name":"花蓮縣立花崗國中","county":"花蓮縣","ownership":"公立"},"154504":{"name":"花蓮縣立美崙國中","county":"花蓮縣","ownership":"公立"},"154508":{"name":"花蓮縣立新城國中","county":"花蓮縣","ownership":"公立"},"154510":{"name":"花蓮縣立宜昌國中","county":"花蓮縣","ownership":"公立"},"154522":{"name":"花蓮縣立自強國中","county":"花蓮縣","ownership":"公立"},"154515":{"name":"花蓮縣立鳳林國中","county":"花蓮縣","ownership":"公立"},"154513":{"name":"花蓮縣立光復國中","county":"花蓮縣","ownership":"公立"},"151312":{"name":"花蓮縣財團法人慈濟大學附中","county":"花蓮縣","ownership":"私立"},"154523":{"name":"花蓮縣立化仁國中","county":"花蓮縣","ownership":"公立"},"154502":{"name":"花蓮縣立玉東國中","county":"花蓮縣","ownership":"公立"},"154514":{"name":"花蓮縣立富源國中","county":"花蓮縣","ownership":"公立"},"154509":{"name":"花蓮縣立吉安國中","county":"花蓮縣","ownership":"公立"},"154517":{"name":"花蓮縣立富里國中","county":"花蓮縣","ownership":"公立"},"154511":{"name":"花蓮縣立壽豐國中","county":"花蓮縣","ownership":"公立"},"154512":{"name":"花蓮縣立平和國中","county":"花蓮縣","ownership":"公立"},"064543":{"name":"臺中市立新光國中","county":"臺中市","ownership":"公立"},"154520":{"name":"花蓮縣立瑞穗國中","county":"花蓮縣","ownership":"公立"},"021310":{"name":"宜蘭縣私立中道高中","county":"宜蘭縣","ownership":"私立"},"144505":{"name":"臺東縣立豐田國中","county":"臺東縣","ownership":"公立"},"014533":{"name":"新北市立汐止國中","county":"新北市","ownership":"公立"},"140301":{"name":"臺東縣國立臺東大學附屬體育高中","county":"臺東縣","ownership":"國立"},"154518":{"name":"花蓮縣立富北國中","county":"花蓮縣","ownership":"公立"},"154519":{"name":"花蓮縣立豐濱國中","county":"花蓮縣","ownership":"公立"},"154503":{"name":"花蓮縣立三民國中","county":"花蓮縣","ownership":"公立"},"151306":{"name":"花蓮縣私立海星高中","county":"花蓮縣","ownership":"私立"},"154507":{"name":"花蓮縣立秀林國中","county":"花蓮縣","ownership":"公立"},"144507":{"name":"臺東縣立初鹿國中","county":"臺東縣","ownership":"公立"},"094308":{"name":"雲林縣立古坑華德福實驗高中附設國中","county":"雲林縣","ownership":"公立"},"094503":{"name":"雲林縣立大埤國中","county":"雲林縣","ownership":"公立"}},"records":[[3,1,"154506",0,-1],[3,1,"154501",1,0],[3,1,"154501",1,2],[3,1,"154505",0,-1],[3,1,"154504",0,-1],[3,1,"154508",0,-1],[3,1,"154506",0,-1],[3,1,"154510",0,-1],[3,1,"154522",1,1],[3,1,"154515",0,-1],[3,1,"154505",1,0],[3,1,"154522",1,6],[3,1,"154510",0,-1],[3,1,"154522",0,-1],[3,1,"154504",2,-1],[3,1,"154510",1,1],[3,1,"154513",0,-1],[3,1,"154522",1,2],[3,1,"154522",0,-1],[3,1,"151312",0,-1],[3,1,"154505",0,-1],[3,1,"154501",1,1],[3,1,"154510",0,-1],[3,1,"154505",1,0],[3,1,"154504",0,-1],[3,1,"154501",0,-1],[3,1,"154505",0,-1],[3,1,"154501",0,-1],[3,1,"154523",0,-1],[3,1,"154522",0,-1],[3,2,"154505",1,1],[3,2,"154505",0,-1],[3,2,"154505",0,-1],[3,2,"154523",0,-1],[3,2,"154505",0,-1],[3,2,"154501",0,-1],[3,2,"154505",0,-1],[3,2,"154505",0,-1],[3,2,"154502",1,0],[3,2,"154515",0,-1],[3,2,"154504",0,-1],[3,2,"154506",0,-1],[3,2,"154522",0,-1],[3,2,"154510",1,1],[3,2,"154505",0,-1],[3,2,"154522",0,-1],[3,2,"154522",1,1],[3,2,"154510",1,0],[3,2,"154506",0,-1],[3,2,"154506",1,1],[3,2,"154510",0,-1],[3,2,"154505",0,-1],[3,2,"154506",0,-1],[3,2,"154514",1,0],[3,2,"154522",0,-1],[3,2,"154506",0,-1],[3,2,"154515",1,1],[3,2,"154510",0,-1],[3,2,"154515",0,-1],[3,2,"154505",1,5],[3,2,"151312",2,-1],[3,3,"154506",0,-1],[3,3,"154506",0,-1],[3,3,"154506",1,5],[3,3,"154506",0,-1],[3,3,"154506",0,-1],[3,3,"154506",0,-1],[3,3,"154522",1,1],[3,3,"154505",1,1],[3,3,"154510",0,-1],[3,3,"154510",0,-1],[3,3,"154504",1,2],[3,3,"154506",0,-1],[3,3,"154523",1,0],[3,3,"154523",0,-1],[3,3,"154501",0,-1],[3,3,"154510",1,0],[3,3,"154505",1,1],[3,3,"154523",0,-1],[3,3,"154506",0,-1],[3,3,"154506",0,-1],[3,3,"154515",0,-1],[3,3,"154505",0,-1],[3,3,"154506",1,1],[3,3,"154506",0,-1],[3,3,"154506",0,-1],[3,3,"151312",0,-1],[3,3,"154506",0,-1],[3,4,"154522",1,1],[3,4,"154505",0,-1],[3,4,"154506",1,0],[3,4,"154506",0,-1],[3,4,"154522",0,-1],[3,4,"154509",1,1],[3,4,"154505",0,-1],[3,4,"154517",0,-1],[3,4,"154505",0,-1],[3,4,"154522",0,-1],[3,4,"154506",0,-1],[3,4,"154505",0,-1],[3,4,"154506",0,-1],[3,4,"154505",0,-1],[3,4,"154506",0,-1],[3,4,"154508",1,0],[3,4,"154505",0,-1],[3,4,"154514",1,2],[3,4,"154511",0,-1],[3,4,"154506",0,-1],[3,4,"154505",0,-1],[3,4,"154505",0,-1],[3,4,"154506",1,3],[3,4,"154506",0,-1],[3,4,"154505",1,1],[3,4,"154505",0,-1],[3,4,"154505",0,-1],[3,4,"154505",0,-1],[3,4,"154501",0,-1],[3,4,"154505",1,1],[3,5,"154505",0,-1],[3,5,"154505",0,-1],[3,5,"154510",1,0],[3,5,"154510",0,-1],[3,5,"154505",0,-1],[3,5,"154505",2,-1],[3,5,"154506",0,-1],[3,5,"154506",0,-1],[3,5,"154510",0,-1],[3,5,"154523",1,0],[3,5,"154505",1,5],[3,5,"154506",0,-1],[3,5,"154506",0,-1],[3,5,"154506",0,-1],[3,5,"154506",0,-1],[3,5,"154505",0,-1],[3,5,"154509",0,-1],[3,5,"154506",0,-1],[3,5,"154522",0,-1],[3,5,"154505",0,-1],[3,5,"154522",0,-1],[3,5,"154506",0,-1],[3,5,"154510",0,-1],[3,5,"154505",0,-1],[3,5,"154505",1,1],[3,5,"154502",0,-1],[3,5,"154515",0,-1],[3,5,"154505",0,-1],[3,5,"154505",0,-1],[3,5,"154505",0,-1],[3,5,"154506",1,0],[3,5,"154506",0,-1],[3,5,"154505",0,-1],[3,5,"154506",0,-1],[3,6,"154510",1,0],[3,6,"154506",1,0],[3,6,"154501",1,4],[3,6,"154505",0,-1],[3,6,"154506",0,-1],[3,6,"154505",0,-1],[3,6,"154506",0,-1],[3,6,"154505",0,-1],[3,6,"154506",0,-1],[3,6,"154505",0,-1],[3,6,"154506",1,0],[3,6,"154523",0,-1],[3,6,"154505",1,1],[3,6,"154522",0,-1],[3,6,"154506",0,-1],[3,6,"154512",1,0],[3,6,"154505",0,-1],[3,6,"154501",0,-1],[3,6,"154515",0,-1],[3,6,"154506",0,-1],[3,6,"154523",0,-1],[3,6,"154522",0,-1],[3,6,"154505",0,-1],[3,6,"154522",0,-1],[3,6,"154505",0,-1],[3,6,"154511",0,-1],[3,6,"154505",0,-1],[3,6,"154505",0,-1],[3,6,"154515",0,-1],[3,6,"154506",0,-1],[3,6,"064543",0,-1],[3,6,"154505",0,-1],[3,6,"154506",0,-1],[3,6,"154510",0,-1],[3,7,"154523",0,-1],[3,7,"154505",1,0],[3,7,"154505",0,-1],[3,7,"154505",0,-1],[3,7,"154505",0,-1],[3,7,"154522",0,-1],[3,7,"154506",1,2],[3,7,"154506",1,0],[3,7,"154522",0,-1],[3,7,"154505",0,-1],[3,7,"154505",0,-1],[3,7,"154520",0,-1],[3,7,"154506",0,-1],[3,7,"154501",1,1],[3,7,"154515",1,2],[3,7,"154506",0,-1],[3,7,"154522",0,-1],[3,7,"154506",0,-1],[3,7,"154505",1,0],[3,7,"154505",2,-1],[3,7,"154505",1,0],[3,7,"154505",0,-1],[3,7,"154505",0,-1],[3,7,"154506",0,-1],[3,7,"154504",1,0],[3,7,"154505",1,1],[3,7,"154505",1,0],[3,7,"154506",1,1],[3,7,"154505",0,-1],[3,7,"154506",0,-1],[3,7,"154506",0,-1],[3,7,"154506",0,-1],[3,7,"154506",0,-1],[3,7,"154506",0,-1],[3,7,"154505",0,-1],[3,8,"154506",0,-1],[3,8,"154505",0,-1],[3,8,"154506",0,-1],[3,8,"154505",1,0],[3,8,"154511",1,0],[3,8,"154506",0,-1],[3,8,"154506",0,-1],[3,8,"154506",0,-1],[3,8,"154506",0,-1],[3,8,"154505",1,0],[3,8,"154510",0,-1],[3,8,"154506",1,1],[3,8,"154506",0,-1],[3,8,"154506",0,-1],[3,8,"154520",0,-1],[3,8,"154510",1,2],[3,8,"154510",1,2],[3,8,"154505",0,-1],[3,8,"154506",0,-1],[3,8,"154506",1,1],[3,8,"154501",1,2],[3,8,"154506",0,-1],[3,8,"154506",0,-1],[3,8,"154501",0,-1],[3,8,"154506",0,-1],[3,8,"154506",0,-1],[3,8,"154522",0,-1],[3,8,"151312",0,-1],[3,8,"154506",0,-1],[3,8,"154505",0,-1],[3,8,"154505",0,-1],[3,8,"021310",0,-1],[3,8,"154505",0,-1],[3,8,"154506",0,-1],[3,8,"154506",0,-1],[3,8,"154506",0,-1],[3,8,"154506",0,-1],[3,8,"154508",1,2],[3,9,"154510",0,-1],[3,9,"154505",0,-1],[3,9,"154505",1,1],[3,9,"154506",0,-1],[3,9,"154510",0,-1],[3,9,"154510",1,0],[3,9,"154506",0,-1],[3,9,"154506",0,-1],[3,9,"154506",0,-1],[3,9,"154510",1,0],[3,9,"154505",0,-1],[3,9,"154522",0,-1],[3,9,"154506",0,-1],[3,9,"154506",0,-1],[3,9,"154505",0,-1],[3,9,"154505",1,0],[3,9,"154505",2,-1],[3,9,"154506",0,-1],[3,9,"154522",0,-1],[3,9,"154505",1,1],[3,9,"154506",0,-1],[3,9,"154506",0,-1],[3,9,"154505",0,-1],[3,9,"154506",0,-1],[3,9,"154505",0,-1],[3,9,"154506",0,-1],[3,9,"154506",0,-1],[3,9,"154505",0,-1],[3,9,"154505",0,-1],[3,9,"154505",0,-1],[3,9,"154506",0,-1],[3,9,"154506",0,-1],[3,9,"154505",0,-1],[3,9,"154505",0,-1],[3,9,"154505",0,-1],[3,9,"154510",0,-1],[3,10,"154505",1,0],[3,10,"154506",0,-1],[3,10,"154505",0,-1],[3,10,"154506",0,-1],[3,11,"154506",0,-1],[3,11,"154505",0,-1],[3,11,"151312",0,-1],[3,11,"154505",0,-1],[3,11,"154522",0,-1],[3,11,"154505",0,-1],[3,11,"154506",0,-1],[3,11,"154522",0,-1],[3,11,"151312",0,-1],[3,11,"154506",0,-1],[3,11,"154505",0,-1],[3,11,"151312",0,-1],[3,11,"154505",0,-1],[3,11,"154522",0,-1],[3,11,"154522",0,-1],[3,11,"154505",0,-1],[3,11,"154505",0,-1],[3,11,"154522",0,-1],[3,11,"154505",0,-1],[3,11,"154506",0,-1],[3,11,"154522",1,0],[3,11,"154505",0,-1],[3,11,"154505",0,-1],[3,11,"154510",0,-1],[3,11,"154506",0,-1],[3,12,"144505",1,0],[3,12,"014533",1,0],[3,12,"144505",1,4],[3,12,"144505",0,-1],[3,12,"144505",1,4],[3,12,"154506",0,-1],[3,12,"154504",1,2],[3,12,"144505",1,0],[3,12,"144505",0,-1],[3,12,"154506",0,-1],[3,12,"144505",1,0],[3,12,"154506",1,2],[3,12,"144505",1,2],[2,1,"154505",0,-1],[2,1,"154514",1,2],[2,1,"154506",0,-1],[2,1,"154505",0,-1],[2,1,"154509",1,1],[2,1,"154506",1,8],[2,1,"154505",0,-1],[2,1,"154515",0,-1],[2,1,"154505",0,-1],[2,1,"154504",0,-1],[2,1,"154505",0,-1],[2,1,"154504",0,-1],[2,1,"154506",1,2],[2,1,"154501",1,2],[2,1,"154506",0,-1],[2,1,"154510",0,-1],[2,1,"154505",1,1],[2,1,"154506",1,0],[2,1,"154506",0,-1],[2,1,"154506",0,-1],[2,1,"154506",0,-1],[2,1,"154505",0,-1],[2,1,"154505",1,0],[2,1,"154501",0,-1],[2,1,"154506",0,-1],[2,2,"154504",0,-1],[2,2,"154505",0,-1],[2,2,"154506",0,-1],[2,2,"154506",0,-1],[2,2,"154514",1,0],[2,2,"154515",0,-1],[2,2,"154523",1,0],[2,2,"154509",0,-1],[2,2,"154505",1,1],[2,2,"140301",1,2],[2,2,"154508",1,1],[2,2,"154508",1,0],[2,2,"154505",0,-1],[2,2,"154505",0,-1],[2,2,"154506",0,-1],[2,2,"154505",0,-1],[2,2,"154514",0,-1],[2,2,"154504",0,-1],[2,2,"151312",0,-1],[2,2,"154510",0,-1],[2,2,"154515",1,0],[2,2,"154522",1,0],[2,2,"154504",1,4],[2,2,"154506",0,-1],[2,3,"154518",1,0],[2,3,"154504",0,-1],[2,3,"154510",0,-1],[2,3,"154510",0,-1],[2,3,"154518",0,-1],[2,3,"154505",0,-1],[2,3,"154518",1,2],[2,3,"154505",0,-1],[2,3,"154505",0,-1],[2,3,"144505",0,-1],[2,3,"154518",0,-1],[2,3,"154518",0,-1],[2,3,"154513",0,-1],[2,3,"154506",0,-1],[2,3,"154519",1,0],[2,3,"154522",1,1],[2,3,"154505",0,-1],[2,3,"154504",0,-1],[2,3,"154506",0,-1],[2,3,"154506",0,-1],[2,3,"154506",0,-1],[2,3,"154517",0,-1],[2,3,"154510",0,-1],[2,3,"154506",0,-1],[2,3,"154522",0,-1],[2,4,"154505",1,0],[2,4,"154501",0,-1],[2,4,"154504",0,-1],[2,4,"154506",0,-1],[2,4,"154505",0,-1],[2,4,"154506",0,-1],[2,4,"151312",0,-1],[2,4,"154505",0,-1],[2,4,"154522",1,2],[2,4,"154504",0,-1],[2,4,"154505",0,-1],[2,4,"154505",0,-1],[2,4,"154506",0,-1],[2,4,"154522",0,-1],[2,4,"154504",0,-1],[2,4,"154511",0,-1],[2,4,"154506",0,-1],[2,4,"154522",0,-1],[2,4,"154501",0,-1],[2,4,"154506",1,1],[2,4,"154505",1,1],[2,4,"154506",0,-1],[2,4,"154505",0,-1],[2,4,"154506",1,0],[2,4,"154522",1,0],[2,4,"154505",0,-1],[2,5,"154505",0,-1],[2,5,"154505",0,-1],[2,5,"154522",0,-1],[2,5,"154523",1,0],[2,5,"154505",0,-1],[2,5,"154505",0,-1],[2,5,"154505",0,-1],[2,5,"154523",0,-1],[2,5,"154506",0,-1],[2,5,"151312",0,-1],[2,5,"154508",1,6],[2,5,"154520",0,-1],[2,5,"154506",0,-1],[2,5,"154504",0,-1],[2,5,"154515",1,1],[2,5,"154501",0,-1],[2,5,"154505",0,-1],[2,5,"154505",0,-1],[2,5,"154506",0,-1],[2,5,"154510",0,-1],[2,5,"154506",0,-1],[2,5,"154506",0,-1],[2,5,"154522",1,0],[2,5,"154506",0,-1],[2,5,"154506",0,-1],[2,5,"154503",1,7],[2,5,"154506",0,-1],[2,5,"154506",0,-1],[2,5,"154505",0,-1],[2,5,"154505",0,-1],[2,5,"154505",0,-1],[2,5,"154501",0,-1],[2,5,"154506",0,-1],[2,5,"154510",0,-1],[2,5,"154506",0,-1],[2,5,"154506",0,-1],[2,5,"154523",0,-1],[2,6,"154523",0,-1],[2,6,"154515",0,-1],[2,6,"151312",0,-1],[2,6,"154506",0,-1],[2,6,"154506",0,-1],[2,6,"154506",0,-1],[2,6,"154505",1,0],[2,6,"154506",0,-1],[2,6,"154505",1,3],[2,6,"154505",0,-1],[2,6,"154505",0,-1],[2,6,"154506",0,-1],[2,6,"154505",0,-1],[2,6,"154506",0,-1],[2,6,"154513",1,0],[2,6,"154505",0,-1],[2,6,"154504",0,-1],[2,6,"154506",1,1],[2,6,"154506",0,-1],[2,6,"154506",0,-1],[2,6,"154505",0,-1],[2,6,"154515",0,-1],[2,6,"154505",0,-1],[2,6,"154510",0,-1],[2,6,"154505",0,-1],[2,6,"154505",1,0],[2,6,"154505",0,-1],[2,6,"154505",0,-1],[2,6,"151312",0,-1],[2,6,"154505",1,2],[2,6,"154505",0,-1],[2,6,"154505",0,-1],[2,6,"154506",0,-1],[2,6,"154510",0,-1],[2,6,"154523",1,0],[2,6,"154506",0,-1],[2,6,"154506",0,-1],[2,7,"154505",1,9],[2,7,"154505",0,-1],[2,7,"154506",0,-1],[2,7,"154506",0,-1],[2,7,"154505",0,-1],[2,7,"154505",1,0],[2,7,"154505",1,0],[2,7,"154506",0,-1],[2,7,"154505",1,2],[2,7,"154515",0,-1],[2,7,"154505",0,-1],[2,7,"154505",0,-1],[2,7,"154505",0,-1],[2,7,"154505",0,-1],[2,7,"154506",1,0],[2,7,"154505",0,-1],[2,7,"154506",0,-1],[2,7,"154505",0,-1],[2,7,"154504",2,-1],[2,7,"154510",0,-1],[2,7,"154506",0,-1],[2,7,"154505",1,1],[2,7,"154505",0,-1],[2,7,"154505",0,-1],[2,7,"154505",0,-1],[2,7,"154506",0,-1],[2,7,"154505",0,-1],[2,7,"154505",0,-1],[2,7,"151312",0,-1],[2,7,"154510",0,-1],[2,7,"154505",0,-1],[2,7,"154505",0,-1],[2,7,"154505",0,-1],[2,7,"154506",0,-1],[2,7,"154505",0,-1],[2,8,"154522",0,-1],[2,8,"154510",0,-1],[2,8,"154519",1,0],[2,8,"154505",0,-1],[2,8,"154513",0,-1],[2,8,"154505",1,0],[2,8,"154505",0,-1],[2,8,"154506",0,-1],[2,8,"154505",0,-1],[2,8,"154506",0,-1],[2,8,"154515",1,0],[2,8,"154510",3,-1],[2,8,"154510",0,-1],[2,8,"154506",0,-1],[2,8,"154510",1,1],[2,8,"154505",0,-1],[2,8,"154513",0,-1],[2,8,"154506",0,-1],[2,8,"154506",0,-1],[2,8,"154522",0,-1],[2,8,"154506",0,-1],[2,8,"154506",0,-1],[2,8,"154515",0,-1],[2,8,"154506",0,-1],[2,8,"154505",1,0],[2,8,"154505",0,-1],[2,8,"154505",0,-1],[2,8,"154505",0,-1],[2,8,"154509",0,-1],[2,8,"154506",0,-1],[2,8,"154505",0,-1],[2,8,"154506",0,-1],[2,8,"154506",0,-1],[2,8,"154506",0,-1],[2,8,"154518",0,-1],[2,9,"154501",1,1],[2,9,"154501",0,-1],[2,9,"154506",0,-1],[2,9,"154506",0,-1],[2,9,"154522",1,0],[2,9,"154505",0,-1],[2,9,"154505",0,-1],[2,9,"154505",1,0],[2,9,"154522",0,-1],[2,9,"154506",0,-1],[2,9,"154505",0,-1],[2,9,"154506",0,-1],[2,9,"154506",0,-1],[2,9,"154506",0,-1],[2,9,"151306",0,-1],[2,9,"154505",0,-1],[2,9,"154506",1,1],[2,9,"154506",0,-1],[2,9,"154504",0,-1],[2,9,"154505",0,-1],[2,9,"154505",0,-1],[2,9,"154501",0,-1],[2,9,"154505",0,-1],[2,9,"154505",0,-1],[2,9,"154523",0,-1],[2,9,"154506",0,-1],[2,9,"154506",0,-1],[2,9,"154505",0,-1],[2,9,"154506",0,-1],[2,9,"154506",0,-1],[2,9,"154506",0,-1],[2,9,"154506",0,-1],[2,9,"154505",0,-1],[2,9,"154505",0,-1],[2,9,"154506",0,-1],[2,9,"154506",0,-1],[2,9,"154505",0,-1],[2,10,"154505",0,-1],[2,10,"154510",0,-1],[2,10,"154510",1,1],[2,10,"154505",0,-1],[2,10,"154505",1,0],[2,10,"154506",0,-1],[2,10,"154505",0,-1],[2,10,"154505",0,-1],[2,10,"154505",0,-1],[2,11,"154506",0,-1],[2,11,"154506",0,-1],[2,11,"154505",0,-1],[2,11,"154505",0,-1],[2,11,"154505",0,-1],[2,11,"154506",0,-1],[2,11,"154506",0,-1],[2,11,"154501",0,-1],[2,11,"151306",0,-1],[2,11,"154506",0,-1],[2,11,"154506",0,-1],[2,11,"154522",0,-1],[2,11,"154505",0,-1],[2,11,"154506",0,-1],[2,11,"154506",0,-1],[2,11,"154522",0,-1],[2,11,"151306",0,-1],[2,11,"154506",0,-1],[2,11,"154505",0,-1],[2,11,"154506",0,-1],[2,11,"154506",0,-1],[2,11,"154506",0,-1],[2,11,"154506",0,-1],[2,11,"151312",0,-1],[2,11,"154505",0,-1],[2,11,"154506",0,-1],[2,11,"154506",0,-1],[2,11,"151312",0,-1],[2,11,"154522",0,-1],[2,12,"144505",0,-1],[2,12,"154504",1,2],[2,12,"144505",1,0],[2,12,"144505",0,-1],[2,12,"144505",1,3],[2,12,"144505",1,3],[2,12,"144505",1,3],[1,1,"154506",0,-1],[1,1,"154506",0,-1],[1,1,"154510",1,1],[1,1,"154506",0,-1],[1,1,"154502",1,0],[1,1,"154522",0,-1],[1,1,"154506",0,-1],[1,1,"154510",0,-1],[1,1,"154501",0,-1],[1,1,"154505",0,-1],[1,1,"154505",0,-1],[1,1,"154501",0,-1],[1,1,"154522",1,0],[1,1,"154522",1,1],[1,1,"154506",0,-1],[1,1,"154506",0,-1],[1,1,"154505",3,-1],[1,1,"154506",0,-1],[1,1,"154505",0,-1],[1,1,"154506",0,-1],[1,1,"154501",0,-1],[1,1,"154506",0,-1],[1,1,"154518",1,0],[1,1,"154506",0,-1],[1,1,"154505",1,1],[1,1,"154505",0,-1],[1,1,"154505",0,-1],[1,1,"154506",0,-1],[1,1,"154504",0,-1],[1,1,"151312",0,-1],[1,1,"154504",1,0],[1,2,"154505",1,1],[1,2,"154510",0,-1],[1,2,"154505",1,0],[1,2,"154506",0,-1],[1,2,"154505",0,-1],[1,2,"154506",0,-1],[1,2,"154505",0,-1],[1,2,"154522",0,-1],[1,2,"154510",0,-1],[1,2,"154506",0,-1],[1,2,"154505",0,-1],[1,2,"154501",0,-1],[1,2,"154505",1,0],[1,2,"154505",1,1],[1,2,"154505",1,0],[1,2,"154506",0,-1],[1,2,"154505",0,-1],[1,2,"154506",0,-1],[1,2,"154510",1,0],[1,2,"154506",0,-1],[1,2,"154506",0,-1],[1,2,"154505",0,-1],[1,2,"154506",0,-1],[1,2,"154507",0,-1],[1,2,"154506",0,-1],[1,2,"154506",0,-1],[1,2,"154505",0,-1],[1,2,"154522",1,1],[1,2,"151306",0,-1],[1,2,"154506",0,-1],[1,2,"154505",1,0],[1,2,"154501",0,-1],[1,3,"154505",0,-1],[1,3,"154505",0,-1],[1,3,"154504",0,-1],[1,3,"154522",0,-1],[1,3,"154501",0,-1],[1,3,"154506",0,-1],[1,3,"151306",0,-1],[1,3,"154508",1,0],[1,3,"154505",0,-1],[1,3,"154511",1,0],[1,3,"151312",0,-1],[1,3,"154505",1,3],[1,3,"154506",0,-1],[1,3,"154505",0,-1],[1,3,"154506",0,-1],[1,3,"154504",1,0],[1,3,"154506",1,0],[1,3,"154506",0,-1],[1,3,"154522",0,-1],[1,3,"154504",0,-1],[1,3,"144507",1,0],[1,3,"154506",3,-1],[1,3,"154522",0,-1],[1,3,"154505",0,-1],[1,3,"154505",0,-1],[1,3,"154506",0,-1],[1,3,"154506",0,-1],[1,3,"094308",0,-1],[1,3,"154506",0,-1],[1,3,"154506",0,-1],[1,3,"154510",0,-1],[1,3,"154506",1,0],[1,4,"154505",0,-1],[1,4,"154506",0,-1],[1,4,"154506",0,-1],[1,4,"154505",0,-1],[1,4,"154505",0,-1],[1,4,"154505",1,0],[1,4,"154506",0,-1],[1,4,"154513",1,1],[1,4,"154505",1,1],[1,4,"154505",0,-1],[1,4,"154508",0,-1],[1,4,"154510",0,-1],[1,4,"154506",0,-1],[1,4,"154515",0,-1],[1,4,"154506",0,-1],[1,4,"154505",0,-1],[1,4,"154505",0,-1],[1,4,"154505",0,-1],[1,4,"154523",1,0],[1,4,"154505",0,-1],[1,4,"154510",1,0],[1,4,"154523",0,-1],[1,4,"154506",0,-1],[1,4,"154510",0,-1],[1,4,"154520",1,0],[1,4,"154501",0,-1],[1,4,"154506",0,-1],[1,4,"154505",1,0],[1,4,"154513",1,0],[1,4,"154506",0,-1],[1,4,"154510",0,-1],[1,4,"154506",0,-1],[1,4,"154506",0,-1],[1,5,"154506",0,-1],[1,5,"154505",0,-1],[1,5,"154501",0,-1],[1,5,"154506",0,-1],[1,5,"154506",0,-1],[1,5,"154510",1,0],[1,5,"154506",3,-1],[1,5,"154505",0,-1],[1,5,"154501",0,-1],[1,5,"154514",1,5],[1,5,"154522",0,-1],[1,5,"154505",0,-1],[1,5,"154505",0,-1],[1,5,"154519",1,0],[1,5,"154505",0,-1],[1,5,"154522",0,-1],[1,5,"154506",0,-1],[1,5,"154506",0,-1],[1,5,"154506",0,-1],[1,5,"154505",0,-1],[1,5,"154506",0,-1],[1,5,"154506",0,-1],[1,5,"154505",0,-1],[1,5,"154505",0,-1],[1,5,"154505",0,-1],[1,5,"154505",1,1],[1,5,"154505",1,0],[1,5,"154506",0,-1],[1,5,"154505",0,-1],[1,5,"154505",0,-1],[1,5,"151312",1,0],[1,5,"154520",1,0],[1,6,"154505",0,-1],[1,6,"154506",0,-1],[1,6,"154505",1,0],[1,6,"154506",0,-1],[1,6,"154522",0,-1],[1,6,"154506",0,-1],[1,6,"154506",0,-1],[1,6,"154506",1,1],[1,6,"154505",0,-1],[1,6,"154505",0,-1],[1,6,"154505",0,-1],[1,6,"154505",0,-1],[1,6,"154515",0,-1],[1,6,"154520",1,1],[1,6,"154501",1,2],[1,6,"154522",0,-1],[1,6,"154506",0,-1],[1,6,"154505",1,1],[1,6,"154505",1,1],[1,6,"154510",1,0],[1,6,"154505",0,-1],[1,6,"154506",0,-1],[1,6,"154505",0,-1],[1,6,"154522",0,-1],[1,6,"154505",0,-1],[1,6,"154515",0,-1],[1,6,"151306",1,3],[1,6,"154506",0,-1],[1,6,"154510",0,-1],[1,6,"154506",0,-1],[1,6,"154510",0,-1],[1,6,"154515",0,-1],[1,6,"154506",0,-1],[1,7,"154505",0,-1],[1,7,"151306",1,2],[1,7,"154522",0,-1],[1,7,"154505",0,-1],[1,7,"151306",0,-1],[1,7,"154501",1,2],[1,7,"154505",0,-1],[1,7,"154522",0,-1],[1,7,"154523",0,-1],[1,7,"154506",0,-1],[1,7,"154506",0,-1],[1,7,"154510",0,-1],[1,7,"154513",0,-1],[1,7,"154506",0,-1],[1,7,"154506",0,-1],[1,7,"154522",1,3],[1,7,"154506",0,-1],[1,7,"154501",1,2],[1,7,"154511",1,4],[1,7,"154515",0,-1],[1,7,"154506",0,-1],[1,7,"154505",1,0],[1,7,"154504",0,-1],[1,7,"154505",0,-1],[1,7,"154506",0,-1],[1,7,"154506",1,1],[1,7,"154505",0,-1],[1,7,"154505",1,0],[1,7,"154506",0,-1],[1,7,"154510",0,-1],[1,7,"154505",0,-1],[1,7,"154505",0,-1],[1,8,"154501",0,-1],[1,8,"154504",1,0],[1,8,"154506",0,-1],[1,8,"154505",0,-1],[1,8,"154506",0,-1],[1,8,"154504",0,-1],[1,8,"154501",1,0],[1,8,"154505",0,-1],[1,8,"154515",0,-1],[1,8,"154504",1,1],[1,8,"154501",1,2],[1,8,"154506",1,0],[1,8,"154508",0,-1],[1,8,"154506",1,0],[1,8,"154506",0,-1],[1,8,"151306",0,-1],[1,8,"154503",1,0],[1,8,"154506",0,-1],[1,8,"154506",0,-1],[1,8,"154505",0,-1],[1,8,"154506",0,-1],[1,8,"154506",0,-1],[1,8,"154505",0,-1],[1,8,"154504",0,-1],[1,8,"154506",0,-1],[1,8,"154505",0,-1],[1,8,"154515",0,-1],[1,8,"154505",0,-1],[1,8,"154515",1,0],[1,8,"154501",0,-1],[1,8,"154506",0,-1],[1,8,"154506",0,-1],[1,8,"154506",0,-1],[1,9,"154515",0,-1],[1,9,"154505",0,-1],[1,9,"154522",0,-1],[1,9,"154505",1,0],[1,9,"151312",1,1],[1,9,"154505",0,-1],[1,9,"154506",0,-1],[1,9,"154506",0,-1],[1,9,"154506",1,1],[1,9,"154505",0,-1],[1,9,"154510",1,1],[1,9,"154505",0,-1],[1,9,"154505",0,-1],[1,9,"154506",0,-1],[1,9,"154511",0,-1],[1,9,"154505",1,1],[1,9,"154505",0,-1],[1,9,"154504",0,-1],[1,9,"154505",0,-1],[1,9,"154506",0,-1],[1,9,"154510",1,0],[1,9,"154510",0,-1],[1,9,"154515",1,7],[1,9,"154505",0,-1],[1,9,"151306",0,-1],[1,9,"154522",0,-1],[1,9,"154510",0,-1],[1,9,"154505",0,-1],[1,9,"154506",0,-1],[1,9,"154508",1,1],[1,9,"154505",0,-1],[1,9,"154505",0,-1],[1,10,"154505",0,-1],[1,10,"154515",1,1],[1,10,"154505",0,-1],[1,10,"154505",0,-1],[1,10,"154505",0,-1],[1,10,"154506",0,-1],[1,10,"154515",1,0],[1,10,"154505",0,-1],[1,10,"154523",1,0],[1,11,"154522",3,-1],[1,11,"154505",0,-1],[1,11,"154505",0,-1],[1,11,"154505",0,-1],[1,11,"151306",0,-1],[1,11,"154505",0,-1],[1,11,"154505",0,-1],[1,11,"154505",0,-1],[1,11,"154505",0,-1],[1,11,"151312",0,-1],[1,11,"154506",0,-1],[1,11,"154522",0,-1],[1,11,"154522",0,-1],[1,11,"154522",0,-1],[1,11,"154506",0,-1],[1,11,"151312",0,-1],[1,11,"154505",0,-1],[1,11,"154506",0,-1],[1,11,"154505",0,-1],[1,11,"154506",0,-1],[1,11,"151312",0,-1],[1,11,"154522",0,-1],[1,11,"154505",0,-1],[1,11,"154505",0,-1],[1,11,"154506",0,-1],[1,11,"154506",0,-1],[1,12,"154510",0,-1],[1,12,"154504",1,0],[1,12,"154504",1,2],[1,12,"154510",1,1],[1,12,"154510",0,-1],[1,12,"154504",1,0],[1,12,"154504",0,-1],[1,12,"154523",1,0],[1,12,"144505",0,-1],[1,12,"094503",1,2]]};
+const GRADE_COLOR = {3:'var(--g3)',2:'var(--g2)',1:'var(--g1)'};
+const cohorts = DATA.cohorts.slice().sort((a,b)=>a.entryYear-b.entryYear); // 高三, 高二, 高一
+const gname = g => cohorts.find(c=>c.grade===g).name;
+const shortName = n => n.slice(3).replace(/^(立|私立|國立|財團法人)/,'');
+const fmtPct = (a,b) => b ? (a/b*100).toFixed(1)+'%' : '–';
+const PROGRAMS = Object.entries(DATA.classTypes).map(([no,name])=>({no:+no,name})).sort((a,b)=>a.no-b.no);
+const isSpecial = c => PROGRAMS.some(p=>p.no===c);
+const ctype = c => (PROGRAMS.find(p=>p.no===c)||{name:'普通班'}).name;
+const clsLabel = (g,c) => `${g}${String(c).padStart(2,'0')} 班` + (isSpecial(c) ? `・${ctype(c)}` : '');
+const TOP2 = ['154505','154506']; // 花崗、國風
+const IDS = DATA.identities || [];
+const INDIG = IDS.indexOf('原住民生');
+const state = {view:'overview', grade:0, cls:0, county:'', ident:-1, sort:'total', dir:-1, prog:0, sgrade:0, tgrade:0, tgroup:0, tribe:-1};
+
+function ls(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+// ---- shared helpers ----
+function bySchool(recs){
+  const m = {};
+  recs.forEach(r=>{ const o = m[r[2]] ||= {code:r[2],total:0,ind:0,g:{1:0,2:0,3:0}}; o.total++; o.g[r[0]]++; if(r[3]===INDIG) o.ind++; });
+  return Object.values(m).sort((a,b)=>b.total-a.total || a.code.localeCompare(b.code));
+}
+function niceMax(v){ const steps=[5,10,20,25,40,50,80,100,150,200,250,300,400,500]; return steps.find(s=>s>=v) || Math.ceil(v/100)*100; }
+function makeGradeSeg(el, key, onPick){
+  [{g:0,label:'全部'}, ...cohorts.map(c=>({g:c.grade,label:`${c.name}（${c.entryYear}入學）`}))].forEach(o=>{
+    const b = document.createElement('button');
+    b.type='button'; b.dataset.v=o.g;
+    b.innerHTML = (o.g?`<span class="dot" style="background:${GRADE_COLOR[o.g]}"></span>`:'') + o.label;
+    b.onclick = ()=>{ state[key]=o.g; onPick && onPick(); render(); };
+    el.appendChild(b);
+  });
+}
+function syncSeg(el, v){ el.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', +b.dataset.v===v)); }
+
+// ---- tooltip ----
+const tip = document.getElementById('tip');
+function showTip(e, html){
+  tip.innerHTML = html; tip.hidden = false;
+  const r = tip.getBoundingClientRect(), pad=12;
+  let x = e.clientX + 14, y = e.clientY + 14;
+  if (x + r.width > innerWidth - pad) x = e.clientX - r.width - 14;
+  if (y + r.height > innerHeight - pad) y = e.clientY - r.height - 14;
+  tip.style.left = Math.max(pad,x)+'px'; tip.style.top = Math.max(pad,y)+'px';
+}
+function hideTip(){ tip.hidden = true; document.querySelectorAll('.row.hl').forEach(n=>n.classList.remove('hl')); }
+document.addEventListener('scroll', hideTip, {passive:true});
+
+function drawBars(barsEl, ticksEl, rows, gradesShown, total){
+  const max = niceMax(rows[0]?.total || 1);
+  ticksEl.innerHTML = [0,.25,.5,.75,1].map(f=>`<span class="num" style="left:${f*100}%">${Math.round(max*f)}</span>`).join('');
+  if(!rows.length){ barsEl.innerHTML = '<div class="empty">這個條件下沒有學生</div>'; return; }
+  barsEl.innerHTML = rows.map(r=>{
+    const s = DATA.schools[r.code];
+    const segs = gradesShown.filter(g=>r.g[g]).map(g=>`<i style="width:calc(${r.g[g]/max*100}% - 2px);background:${GRADE_COLOR[g]}"></i>`).join('');
+    return `<div class="row" data-code="${r.code}" tabindex="0">
+      <div class="name">${esc(shortName(s.name))}<em>${s.county}${s.ownership!=='公立'?'・'+s.ownership:''}</em></div>
+      <div class="track"><div class="stack">${segs}</div></div>
+      <div class="val num">${r.total}<span>${fmtPct(r.total,total)}</span></div></div>`;
+  }).join('');
+  const rowMap = Object.fromEntries(rows.map(r=>[r.code,r]));
+  barsEl.querySelectorAll('.row').forEach(el=>{
+    const r = rowMap[el.dataset.code], s = DATA.schools[r.code];
+    const html = `<b>${esc(s.name)}</b><div style="opacity:.75;margin-bottom:4px">代碼 ${r.code}</div>` +
+      gradesShown.map(g=>`<div class="tl"><span><i class="dot" style="background:${GRADE_COLOR[g]}"></i>${gname(g)}</span><span class="num">${r.g[g]} 人</span></div>`).join('') +
+      `<div class="tl" style="margin-top:4px;border-top:1px solid rgba(128,128,128,.4);padding-top:4px"><span>合計</span><span class="num">${r.total} 人・${fmtPct(r.total,total)}</span></div>` +
+      (INDIG>=0 ? `<div class="tl"><span>其中原住民生</span><span class="num">${r.ind} 人</span></div>` : '');
+    const on = e=>{ hideTip(); el.classList.add('hl'); showTip(e, html); };
+    el.addEventListener('pointermove', on);
+    el.addEventListener('pointerleave', hideTip);
+    el.addEventListener('focus', ()=>{ const b=el.getBoundingClientRect(); on({clientX:b.left+b.width/2, clientY:b.bottom}); });
+    el.addEventListener('blur', hideTip);
+  });
+}
+function drawCounties(el, recs, active){
+  const cm = {}; recs.forEach(r=>{const c=DATA.schools[r[2]].county; cm[c]=(cm[c]||0)+1;});
+  const list = Object.entries(cm).sort((a,b)=>b[1]-a[1]);
+  const cmax = list[0]?.[1] || 1;
+  el.innerHTML = list.map(([c,n])=>
+    `<div class="crow" style="${active && active!==c ? 'opacity:.45':''}"><div class="top"><b>${c}</b><span class="num">${n} 人・${fmtPct(n,recs.length)}</span></div><div class="cbar"><i style="width:${n/cmax*100}%"></i></div></div>`
+  ).join('') || '<div class="empty">沒有資料</div>';
+}
+
+function drawIdentity(el, recs, active){
+  const cm = IDS.map(()=>0); recs.forEach(r=>cm[r[3]]++);
+  const cmax = Math.max(1, ...cm);
+  el.innerHTML = recs.length ? IDS.map((name,i)=>
+    `<div class="crow" style="${active>=0 && active!==i ? 'opacity:.45':''}"><div class="top"><b>${esc(name)}</b><span class="num">${cm[i]} 人・${fmtPct(cm[i],recs.length)}</span></div><div class="cbar"><i style="width:${cm[i]/cmax*100}%"></i></div></div>`
+  ).join('') : '<div class="empty">沒有資料</div>';
+}
+
+// ---- static setup ----
+document.querySelectorAll('.gradeLegend').forEach(el=>el.innerHTML = cohorts.map(c=>`<span><i class="dot" style="background:${GRADE_COLOR[c.grade]}"></i>${c.name}</span>`).join(''));
+document.getElementById('eyebrow').textContent = `${DATA.school}・${DATA.schoolYearRoc} 學年度在校生`;
+document.getElementById('foot').textContent = `資料來源：${cohorts.map(c=>c.name+'學生資料一覽表').join('、')}。班級依座號順序推定；每個年級${PROGRAMS.map(p=>`第 ${p.no} 班為${p.name}`).join('、')}。本頁僅含年級、班級、畢業國中、報部身份與原住民族別的統計，不含學號與姓名。`;
+
+const tabs = {overview:document.getElementById('tab-overview'), special:document.getElementById('tab-special'), tribe:document.getElementById('tab-tribe')};
+Object.entries(tabs).forEach(([k,b])=>b.onclick=()=>{ state.view=k; try{history.replaceState(null,'','#'+k);}catch(e){} render(); });
+
+// overview filters
+const gradeSeg = document.getElementById('gradeSeg');
+makeGradeSeg(gradeSeg, 'grade', ()=>{ state.cls=0; });
+const classSel = document.getElementById('classSel');
+classSel.onchange = ()=>{state.cls=+classSel.value; render();};
+const countySel = document.getElementById('countySel');
+const counties = [...new Set(Object.values(DATA.schools).map(s=>s.county))];
+const countyCount = c => DATA.records.filter(r=>DATA.schools[r[2]].county===c).length;
+counties.sort((a,b)=>countyCount(b)-countyCount(a));
+countySel.innerHTML = '<option value="">全部縣市</option>' + counties.map(c=>`<option value="${c}">${c}</option>`).join('');
+countySel.onchange = ()=>{state.county=countySel.value; render();};
+const identSel = document.getElementById('identSel');
+identSel.innerHTML = '<option value="-1">全部身份</option>' + IDS.map((n,i)=>`<option value="${i}">${esc(n)}</option>`).join('');
+identSel.onchange = ()=>{state.ident=+identSel.value; render();};
+
+// special filters
+const progSeg = document.getElementById('progSeg');
+[{no:0,name:'三班合計'}, ...PROGRAMS].forEach(p=>{
+  const b = document.createElement('button');
+  b.type='button'; b.dataset.v=p.no; b.textContent=p.name;
+  b.onclick = ()=>{ state.prog=p.no; render(); };
+  progSeg.appendChild(b);
+});
+const sgradeSeg = document.getElementById('sgradeSeg');
+makeGradeSeg(sgradeSeg, 'sgrade');
+
+// ---- overview ----
+function filtered(opts={}){
+  return DATA.records.filter(r=>
+    (opts.ignoreGrade || !state.grade || r[0]===state.grade) &&
+    (opts.ignoreGrade || !state.cls || r[1]===state.cls) &&
+    (opts.ignoreCounty || !state.county || DATA.schools[r[2]].county===state.county) &&
+    (opts.ignoreIdent || state.ident<0 || r[3]===state.ident));
+}
+function renderOverview(){
+  syncSeg(gradeSeg, state.grade);
+  const classes = state.grade ? [...new Set(DATA.records.filter(r=>r[0]===state.grade).map(r=>r[1]))].sort((a,b)=>a-b) : [];
+  classSel.innerHTML = '<option value="0">全部班級</option>' + classes.map(c=>`<option value="${c}">${clsLabel(state.grade,c)}</option>`).join('');
+  classSel.value = state.cls; classSel.disabled = !state.grade;
+  countySel.value = state.county;
+  identSel.value = state.ident;
+
+  const recs = filtered();
+  const inScope = filtered({ignoreCounty:true});
+  const rows = bySchool(recs);
+  const total = recs.length;
+  const scopeLabel = (state.grade ? gname(state.grade) : '三個年級') + (state.cls ? ` ${clsLabel(state.grade,state.cls)}` : '') + (state.county ? `・${state.county}` : '') + (state.ident>=0 ? `・${IDS[state.ident]}` : '');
+
+  const top2 = rows.slice(0,2), top2n = top2.reduce((s,r)=>s+r.total,0);
+  const hl = inScope.filter(r=>DATA.schools[r[2]].county==='花蓮縣').length;
+  const topSchool = rows[0];
+  document.getElementById('tiles').innerHTML = [
+    {k:'學生人數', v:`<span class="num">${total}</span><small>人</small>`, d: scopeLabel},
+    {k:'來源國中', v:`<span class="num">${rows.length}</span><small>所</small>`, d: topSchool ? `最多：${esc(shortName(DATA.schools[topSchool.code].name))} ${topSchool.total} 人` : '—'},
+    {k:'前兩校合計占比', v:`<span class="num">${fmtPct(top2n,total)}</span>`, d: top2.map(r=>esc(shortName(DATA.schools[r.code].name))).join('＋') || '—'},
+    {k:'來自花蓮縣內國中', v:`<span class="num">${fmtPct(hl,inScope.length)}</span>`, d:`${hl} / ${inScope.length} 人（不受縣市篩選影響）`},
+  ].map(t=>`<div class="tile"><span class="k">${t.k}</span><span class="v">${t.v}</span><span class="d">${t.d}</span></div>`).join('');
+
+  document.getElementById('barsSub').textContent = `${scopeLabel}，共 ${rows.length} 所國中，依人數排序`;
+  drawBars(document.getElementById('bars'), document.getElementById('ticks'), rows, state.grade ? [state.grade] : cohorts.map(c=>c.grade), total);
+  drawCounties(document.getElementById('clist'), inScope, state.county);
+  const idScope = filtered({ignoreIdent:true});
+  document.getElementById('identSub').textContent = `${(state.grade ? gname(state.grade) : '三個年級') + (state.cls ? ` ${clsLabel(state.grade,state.cls)}` : '') + (state.county ? `・${state.county}` : '')}，共 ${idScope.length} 人（不受報部身份篩選影響）`;
+  drawIdentity(document.getElementById('ilist'), idScope, state.ident);
+
+  const om = {'公立':0,'私立':0,'國立':0}; recs.forEach(r=>om[DATA.schools[r[2]].ownership]++);
+  document.getElementById('own').innerHTML = Object.entries(om).map(([k,n])=>`<div><b class="num">${n}</b><span>${k}・${fmtPct(n,total)}</span></div>`).join('');
+  renderTable();
+}
+
+function renderTable(){
+  const recs = filtered({ignoreGrade:true});
+  const rows = bySchool(recs).map(r=>({...r, delta:r.g[1]-r.g[3]}));
+  const key = state.sort;
+  const val = r => key==='name'? r.code : key==='total'? r.total : key==='delta'? r.delta : key==='ind'? r.ind : r.g[key];
+  rows.sort((a,b)=>{ const va=val(a), vb=val(b); return (va<vb?-1:va>vb?1:0)*state.dir || b.total-a.total; });
+  const tot = {1:0,2:0,3:0}; rows.forEach(r=>{tot[1]+=r.g[1];tot[2]+=r.g[2];tot[3]+=r.g[3];});
+  const T = tot[1]+tot[2]+tot[3];
+  const indT = rows.reduce((s,r)=>s+r.ind,0);
+  const col = (k,label)=>`<th><button type="button" data-k="${k}" data-active="${state.sort===k}">${label}${state.sort===k?(state.dir<0?' ↓':' ↑'):''}</button></th>`;
+  const d = v => v>0?`<span class="delta up">▲ ${v}</span>`:v<0?`<span class="delta down">▼ ${-v}</span>`:'<span class="delta" style="color:var(--ink-3)">—</span>';
+  const tbl = document.getElementById('tbl');
+  tbl.innerHTML = `<thead><tr>${col('name','國中')}${cohorts.map(c=>col(c.grade,`${c.name}（${c.entryYear}）`)).join('')}${col('total','合計')}${col('ind','原住民生')}${col('delta','高一較高三')}</tr></thead>
+    <tbody>${rows.map(r=>`<tr><td>${esc(shortName(DATA.schools[r.code].name))}<span class="muted">${DATA.schools[r.code].county}</span></td>${cohorts.map(c=>`<td class="num">${r.g[c.grade]||'<span style="color:var(--ink-3)">0</span>'}</td>`).join('')}<td class="num"><b>${r.total}</b><span class="muted">${fmtPct(r.total,T)}</span></td><td class="num">${r.ind}<span class="muted">${fmtPct(r.ind,r.total)}</span></td><td class="num">${d(r.delta)}</td></tr>`).join('')}</tbody>
+    <tfoot><tr><td>合計（${rows.length} 所）</td>${cohorts.map(c=>`<td class="num">${tot[c.grade]}</td>`).join('')}<td class="num">${T}</td><td class="num">${indT}<span class="muted">${fmtPct(indT,T)}</span></td><td class="num">${d(tot[1]-tot[3])}</td></tr></tfoot>`;
+  tbl.querySelectorAll('th button').forEach(b=>b.onclick=()=>{
+    const k = isNaN(+b.dataset.k) ? b.dataset.k : +b.dataset.k;
+    if(state.sort===k) state.dir*=-1; else { state.sort=k; state.dir = k==='name'?1:-1; }
+    renderTable();
+  });
+}
+
+// ---- special classes ----
+const inGrade = r => !state.sgrade || r[0]===state.sgrade;
+// no: 班序；0 = 三個特殊班合計；-1 = 普通班
+const progRecs = no => DATA.records.filter(r=>inGrade(r) && (no===-1 ? !isSpecial(r[1]) : no ? r[1]===no : isSpecial(r[1])));
+function profile(recs){
+  const rows = bySchool(recs), n = recs.length;
+  const cnt = f => recs.filter(f).length;
+  return {
+    n, rows,
+    g: {1:cnt(r=>r[0]===1),2:cnt(r=>r[0]===2),3:cnt(r=>r[0]===3)},
+    top2: cnt(r=>TOP2.includes(r[2])),
+    hlOther: cnt(r=>!TOP2.includes(r[2]) && DATA.schools[r[2]].county==='花蓮縣'),
+    outside: cnt(r=>DATA.schools[r[2]].county!=='花蓮縣'),
+    priv: cnt(r=>DATA.schools[r[2]].ownership!=='公立'),
+    ind: cnt(r=>r[3]===INDIG),
+  };
+}
+function renderSpecial(){
+  syncSeg(progSeg, state.prog); syncSeg(sgradeSeg, state.sgrade);
+  const gLabel = state.sgrade ? gname(state.sgrade) : '三個年級';
+
+  // program cards
+  document.getElementById('pcards').innerHTML = PROGRAMS.map(p=>{
+    const pf = profile(progRecs(p.no));
+    const top = pf.rows[0];
+    return `<button type="button" class="pcard" data-no="${p.no}" aria-pressed="${state.prog===p.no}">
+      <span class="pname">${p.name}<small>第 ${p.no} 班</small></span>
+      <span class="pbig"><span class="num">${pf.n}</span><small>人・${gLabel}</small></span>
+      <span class="pgr">${cohorts.filter(c=>!state.sgrade||c.grade===state.sgrade).map(c=>`<span><i class="dot" style="background:${GRADE_COLOR[c.grade]}"></i>${c.name} <b class="num">${pf.g[c.grade]}</b></span>`).join('')}</span>
+      <span class="pfacts">
+        <span><em>來源國中</em><b class="num">${pf.rows.length} 所</b></span>
+        <span><em>最多</em><b>${top ? esc(shortName(DATA.schools[top.code].name))+' '+top.total : '—'}</b></span>
+        <span><em>花蓮縣外</em><b class="num">${fmtPct(pf.outside,pf.n)}</b></span>
+        <span><em>原住民生</em><b class="num">${pf.ind} 人・${fmtPct(pf.ind,pf.n)}</b></span>
+      </span>
+    </button>`;
+  }).join('');
+  document.querySelectorAll('.pcard').forEach(b=>b.onclick=()=>{ const no=+b.dataset.no; state.prog = state.prog===no ? 0 : no; render(); });
+
+  // comparison table
+  const groups = [{no:-1,name:'普通班'}, ...PROGRAMS, {no:0,name:'三個特殊班合計'}].map(p=>({...p, pf:profile(progRecs(p.no))}));
+  document.getElementById('cmpSub').textContent = `${gLabel}；百分比以各班別人數為分母，灰底為普通班對照`;
+  const pctRow = (label,key) => `<tr><th scope="row">${label}</th>${groups.map(x=>`<td class="num">${fmtPct(x.pf[key],x.pf.n)}<span class="muted">${x.pf[key]}</span></td>`).join('')}</tr>`;
+  document.getElementById('cmp').innerHTML =
+    `<thead><tr><th></th>${groups.map(x=>`<th scope="col" class="${x.no===state.prog&&x.no>0?'on':''}">${x.name}</th>`).join('')}</tr></thead><tbody>
+    <tr><th scope="row">人數</th>${groups.map(x=>`<td class="num"><b>${x.pf.n}</b></td>`).join('')}</tr>
+    <tr><th scope="row">來源國中數</th>${groups.map(x=>`<td class="num">${x.pf.rows.length}</td>`).join('')}</tr>
+    ${pctRow('花崗＋國風國中','top2')}
+    ${pctRow('其他花蓮縣國中','hlOther')}
+    ${pctRow('花蓮縣外國中','outside')}
+    ${pctRow('私立／國立國中','priv')}
+    ${pctRow('原住民生','ind')}
+    <tr><th scope="row">最大來源國中</th>${groups.map(x=>{const t=x.pf.rows[0];return `<td>${t?esc(shortName(DATA.schools[t.code].name))+`<span class="muted">${t.total}</span>`:'—'}</td>`;}).join('')}</tr>
+    </tbody>`;
+
+  // bars + county for selected program
+  const pName = state.prog ? ctype(state.prog) : '三個特殊班合計';
+  const recs = progRecs(state.prog);
+  const pf = profile(recs);
+  document.getElementById('h-sbars').textContent = `${pName}的來源國中`;
+  document.getElementById('sbarsSub').textContent = `${gLabel}，${pf.n} 人來自 ${pf.rows.length} 所國中，依人數排序`;
+  drawBars(document.getElementById('sbars'), document.getElementById('sticks'), pf.rows, state.sgrade ? [state.sgrade] : cohorts.map(c=>c.grade), pf.n);
+  document.getElementById('scountySub').textContent = `${pName}・${gLabel}`;
+  drawCounties(document.getElementById('sclist'), recs, '');
+  document.getElementById('sidentSub').textContent = `${pName}・${gLabel}`;
+  drawIdentity(document.getElementById('silist'), recs, -1);
+
+  // matrix: schools x programs
+  const cols = [...PROGRAMS.map(p=>({no:p.no,name:p.name})), {no:0,name:'特殊班合計'}, {no:-1,name:'普通班'}];
+  const colRows = Object.fromEntries(cols.map(c=>[c.no, Object.fromEntries(bySchool(progRecs(c.no)).map(r=>[r.code,r.total]))]));
+  const codes = Object.keys(colRows[0]).sort((a,b)=>(colRows[0][b]-colRows[0][a]) || a.localeCompare(b));
+  const pmax = Math.max(1, ...PROGRAMS.flatMap(p=>Object.values(colRows[p.no])));
+  document.getElementById('matrixSub').textContent = `${gLabel}；列出至少有 1 名特殊班學生的 ${codes.length} 所國中，顏色越深人數越多；普通班欄位供對照`;
+  const cell = (no, code) => {
+    const v = colRows[no][code] || 0;
+    if(no>0){ const a = v ? 12 + Math.round(v/pmax*58) : 0; return `<td class="num heat" style="background:color-mix(in srgb, var(--g3) ${a}%, transparent);${a>45?'color:#fff;':''}">${v||'<span class="zero">·</span>'}</td>`; }
+    return `<td class="num ${no===0?'strong':''}">${v||'<span class="zero">·</span>'}</td>`;
+  };
+  const totals = cols.map(c=>Object.values(colRows[c.no]).reduce((s,v)=>s+v,0));
+  document.getElementById('matrix').innerHTML =
+    `<thead><tr><th>國中</th>${cols.map(c=>`<th class="${c.no===state.prog&&c.no>0?'on':''} ${c.no===-1?'ref':''}">${c.name}</th>`).join('')}</tr></thead>
+    <tbody>${codes.map(code=>`<tr><td>${esc(shortName(DATA.schools[code].name))}<span class="muted">${DATA.schools[code].county}</span></td>${cols.map(c=>cell(c.no,code)).join('')}</tr>`).join('')}</tbody>
+    <tfoot><tr><td>合計</td>${totals.map(t=>`<td class="num">${t}</td>`).join('')}</tr></tfoot>`;
+}
+
+// ---- 原住民族別 ----
+const TRIBES = DATA.tribes || [];
+const TOPN = Math.min(5, TRIBES.length);
+// 前五大族別各一色，其餘併為「其他族別」（中性灰），避免色彩過多無法辨識
+const CATS = TRIBES.length > TOPN ? [...TRIBES.slice(0,TOPN), '其他族別'] : TRIBES.slice();
+const tcat = i => i < TOPN ? i : TOPN;
+const CAT_COLOR = i => `var(--t${i})`;
+document.querySelectorAll('.tribeLegend').forEach(el=>el.innerHTML = CATS.map((c,i)=>`<span><i class="dot" style="background:${CAT_COLOR(i)}"></i>${c}${i===TOPN?`（${TRIBES.slice(TOPN).join('、')}）`:''}</span>`).join(''));
+
+const tgradeSeg = document.getElementById('tgradeSeg');
+makeGradeSeg(tgradeSeg, 'tgrade');
+const groupSeg = document.getElementById('groupSeg');
+[['依班別',0],['依年級',1]].forEach(([label,v])=>{
+  const b = document.createElement('button'); b.type='button'; b.dataset.v=v; b.textContent=label;
+  b.onclick = ()=>{ state.tgroup=v; render(); };
+  groupSeg.appendChild(b);
+});
+const tribeSel = document.getElementById('tribeSel');
+tribeSel.innerHTML = '<option value="-1">全部族別</option>' + TRIBES.map((t,i)=>`<option value="${i}">${esc(t)}</option>`).join('');
+tribeSel.onchange = ()=>{ state.tribe=+tribeSel.value; render(); };
+
+function tribeCounts(recs){ const c = TRIBES.map(()=>0); recs.forEach(r=>{ if(r[4]>=0) c[r[4]]++; }); return c; }
+function catCounts(c){ const k = CATS.map(()=>0); c.forEach((n,i)=>k[tcat(i)]+=n); return k; }
+function tribeTip(c){
+  return TRIBES.map((t,i)=>c[i]?`<div class="tl"><span><i class="dot" style="background:${CAT_COLOR(tcat(i))}"></i>${esc(t)}</span><span class="num">${c[i]} 人</span></div>`:'').join('');
+}
+function bindTip(el, html){
+  const on = e=>{ hideTip(); el.classList.add('hl'); showTip(e, html); };
+  el.addEventListener('pointermove', on);
+  el.addEventListener('pointerleave', hideTip);
+  el.addEventListener('focus', ()=>{ const b=el.getBoundingClientRect(); on({clientX:b.left+b.width/2, clientY:b.bottom}); });
+  el.addEventListener('blur', hideTip);
+}
+
+function renderTribe(){
+  syncSeg(tgradeSeg, state.tgrade); syncSeg(groupSeg, state.tgroup);
+  tribeSel.value = state.tribe;
+  const gLabel = state.tgrade ? gname(state.tgrade) : '三個年級';
+  const all = DATA.records.filter(r=>!state.tgrade || r[0]===state.tgrade);
+  const ind = all.filter(r=>r[4]>=0);
+  const tc = tribeCounts(ind);
+  const order = TRIBES.map((t,i)=>i).sort((a,b)=>tc[b]-tc[a]);
+
+  // tiles
+  document.getElementById('ttiles').innerHTML = [
+    {k:'原住民學生', v:`<span class="num">${ind.length}</span><small>人</small>`, d:`${gLabel}，占全體 ${fmtPct(ind.length,all.length)}`},
+    {k:'族別數', v:`<span class="num">${tc.filter(n=>n).length}</span><small>族</small>`, d:`共 ${TRIBES.length} 個族別出現在三個年級中`},
+    {k:'人數最多', v:`${esc(TRIBES[order[0]])}`, d:`${tc[order[0]]} 人・占原住民學生 ${fmtPct(tc[order[0]],ind.length)}`},
+    {k:'第二多', v:`${esc(TRIBES[order[1]])}`, d:`${tc[order[1]]} 人・占原住民學生 ${fmtPct(tc[order[1]],ind.length)}`},
+  ].map(t=>`<div class="tile"><span class="k">${t.k}</span><span class="v">${t.v}</span><span class="d">${t.d}</span></div>`).join('');
+
+  // composition (100% stacked)
+  let groups;
+  if(state.tgroup===0){
+    groups = [{label:'普通班', f:r=>!isSpecial(r[1])}, ...PROGRAMS.map(p=>({label:p.name, f:r=>r[1]===p.no}))];
+  } else {
+    groups = cohorts.filter(c=>!state.tgrade||c.grade===state.tgrade).map(c=>({label:`${c.name}（${c.entryYear}）`, f:r=>r[0]===c.grade}));
+  }
+  groups.push({label:'全部', f:()=>true, total:true});
+  groups = groups.map(g=>{ const a = all.filter(g.f); const i = a.filter(r=>r[4]>=0); return {...g, all:a.length, n:i.length, c:tribeCounts(i)}; });
+  document.getElementById('compSub').textContent = `${gLabel}；每條長條為該組原住民學生的族別比例（100%）`;
+  document.getElementById('cticks').innerHTML = [0,.25,.5,.75,1].map(f=>`<span class="num" style="left:${f*100}%">${f*100}%</span>`).join('');
+  const compBars = document.getElementById('compBars');
+  compBars.innerHTML = groups.map((g,gi)=>{
+    const k = catCounts(g.c);
+    const segs = g.n ? k.map((n,i)=>n?`<i style="width:calc(${n/g.n*100}% - 2px);background:${CAT_COLOR(i)}"></i>`:'').join('') : '';
+    return `<div class="row${g.total?' total':''}" data-i="${gi}" tabindex="0">
+      <div class="name">${g.label}<em>原住民 ${g.n} / ${g.all} 人・${fmtPct(g.n,g.all)}</em></div>
+      <div class="track"><div class="stack">${segs || '<span class="tribe-note">沒有原住民學生</span>'}</div></div>
+      <div class="val num">${g.n}</div></div>`;
+  }).join('');
+  compBars.querySelectorAll('.row').forEach(el=>{
+    const g = groups[+el.dataset.i];
+    bindTip(el, `<b>${g.label}</b><div style="opacity:.75;margin-bottom:4px">${gLabel}・原住民 ${g.n} 人（占該組 ${fmtPct(g.n,g.all)}）</div>` + (tribeTip(g.c) || '沒有原住民學生'));
+  });
+  document.getElementById('compTbl').innerHTML =
+    `<thead><tr><th></th>${TRIBES.map(t=>`<th scope="col">${esc(t)}</th>`).join('')}<th scope="col">合計</th></tr></thead>
+    <tbody>${groups.map(g=>`<tr><th scope="row">${g.label}</th>${g.c.map(n=>`<td class="num">${n||'<span class="zero">·</span>'}</td>`).join('')}<td class="num"><b>${g.n}</b></td></tr>`).join('')}</tbody>`;
+
+  // source schools
+  const trecs = ind.filter(r=>state.tribe<0 || r[4]===state.tribe);
+  const tName = state.tribe<0 ? '原住民學生' : TRIBES[state.tribe];
+  const m = {};
+  trecs.forEach(r=>{ const o = m[r[2]] ||= {code:r[2], total:0, c:TRIBES.map(()=>0)}; o.total++; o.c[r[4]]++; });
+  const rows = Object.values(m).sort((a,b)=>b.total-a.total || a.code.localeCompare(b.code));
+  document.getElementById('h-tbars').textContent = state.tribe<0 ? '各族學生來自哪些國中' : `${tName}學生來自哪些國中`;
+  document.getElementById('tbarsSub').textContent = `${gLabel}，${tName} ${trecs.length} 人來自 ${rows.length} 所國中，依人數排序`;
+  const max = niceMax(rows[0]?.total || 1);
+  document.getElementById('tticks').innerHTML = [0,.25,.5,.75,1].map(f=>`<span class="num" style="left:${f*100}%">${Math.round(max*f)}</span>`).join('');
+  const tbars = document.getElementById('tbars');
+  if(!rows.length){ tbars.innerHTML = '<div class="empty">這個條件下沒有學生</div>'; }
+  else {
+    tbars.innerHTML = rows.map(r=>{
+      const sch = DATA.schools[r.code];
+      const k = catCounts(r.c);
+      const segs = k.map((n,i)=>n?`<i style="width:calc(${n/max*100}% - 2px);background:${CAT_COLOR(i)}"></i>`:'').join('');
+      return `<div class="row" data-code="${r.code}" tabindex="0">
+        <div class="name">${esc(shortName(sch.name))}<em>${sch.county}${sch.ownership!=='公立'?'・'+sch.ownership:''}</em></div>
+        <div class="track"><div class="stack">${segs}</div></div>
+        <div class="val num">${r.total}<span>${fmtPct(r.total,trecs.length)}</span></div></div>`;
+    }).join('');
+    tbars.querySelectorAll('.row').forEach(el=>{
+      const r = m[el.dataset.code];
+      const schoolAll = all.filter(x=>x[2]===r.code).length;
+      bindTip(el, `<b>${esc(DATA.schools[r.code].name)}</b><div style="opacity:.75;margin-bottom:4px">${gLabel}・該校來的學生共 ${schoolAll} 人</div>` + tribeTip(r.c) +
+        `<div class="tl" style="margin-top:4px;border-top:1px solid rgba(128,128,128,.4);padding-top:4px"><span>合計</span><span class="num">${r.total} 人</span></div>`);
+    });
+  }
+  document.getElementById('tcountySub').textContent = `${tName}・${gLabel}`;
+  drawCounties(document.getElementById('tclist'), trecs, '');
+
+  // matrix: schools x tribes
+  const allRows = {}; ind.forEach(r=>{ const o = allRows[r[2]] ||= {code:r[2], total:0, c:TRIBES.map(()=>0)}; o.total++; o.c[r[4]]++; });
+  const mrows = Object.values(allRows).sort((a,b)=>b.total-a.total || a.code.localeCompare(b.code));
+  const cmax = Math.max(1, ...mrows.flatMap(r=>r.c));
+  document.getElementById('tmatrixSub').textContent = `${gLabel}；${mrows.length} 所國中有原住民學生，顏色越深人數越多`;
+  const heat = v => { const a = v ? 12 + Math.round(v/cmax*58) : 0; return `<td class="num heat" style="background:color-mix(in srgb, var(--accent) ${a}%, transparent);${a>45?'color:var(--surface);':''}">${v||'<span class="zero">·</span>'}</td>`; };
+  const colT = TRIBES.map((t,i)=>mrows.reduce((s,r)=>s+r.c[i],0));
+  document.getElementById('tmatrix').innerHTML =
+    `<thead><tr><th>國中</th>${TRIBES.map((t,i)=>`<th class="${state.tribe===i?'on':''}">${esc(t)}</th>`).join('')}<th>合計</th></tr></thead>
+    <tbody>${mrows.map(r=>`<tr><td>${esc(shortName(DATA.schools[r.code].name))}<span class="muted">${DATA.schools[r.code].county}</span></td>${r.c.map(heat).join('')}<td class="num strong">${r.total}</td></tr>`).join('')}</tbody>
+    <tfoot><tr><td>合計</td>${colT.map(t=>`<td class="num">${t}</td>`).join('')}<td class="num">${ind.length}</td></tr></tfoot>`;
+}
+
+function renderTrend(){
+  const wrap = document.getElementById('trendWrap');
+  const svg = document.getElementById('trendSvg');
+  const n = cohorts.length;
+  const byG = cohorts.map(c=>tribeCounts(DATA.records.filter(r=>r[0]===c.grade && r[4]>=0)));
+  const gTotal = cohorts.map(c=>DATA.records.filter(r=>r[0]===c.grade).length);
+  const indT = byG.map(c=>c.reduce((a,b)=>a+b,0));
+  const series = CATS.map((name,k)=>({name, k, v:byG.map(c=>c.reduce((sum,x,i)=>sum+(tcat(i)===k?x:0),0))}));
+
+  // 以容器實際寬度繪製，文字維持原尺寸
+  const W = Math.max(320, Math.min(900, wrap.clientWidth || 640));
+  const narrow = W < 480;
+  const H = narrow ? 260 : 300;
+  const m = {l:34, r:narrow?104:132, t:14, b:40};
+  const ymax = niceMax(Math.max(1, ...series.flatMap(x=>x.v)));
+  const X = i => m.l + (n===1 ? 0 : i*(W-m.l-m.r)/(n-1));
+  const Y = v => m.t + (1 - v/ymax)*(H-m.t-m.b);
+  const ticks = [0,.2,.4,.6,.8,1].map(f=>Math.round(ymax*f));
+
+  let g = '';
+  ticks.forEach(t=>{ g += `<line x1="${m.l}" x2="${W-m.r+8}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--grid)" stroke-width="1"/>
+    <text x="${m.l-8}" y="${Y(t)+4}" text-anchor="end" font-size="11.5" fill="var(--ink-3)">${t}</text>`; });
+  cohorts.forEach((c,i)=>{ g += `<text x="${X(i)}" y="${H-m.b+18}" text-anchor="middle" font-size="12.5" fill="var(--ink-2)">${c.name}</text>
+    <text x="${X(i)}" y="${H-m.b+33}" text-anchor="middle" font-size="11" fill="var(--ink-3)">${c.entryYear}入學</text>`; });
+  g += `<line id="trendGuide" x1="0" x2="0" y1="${m.t}" y2="${H-m.b}" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="3 3" visibility="hidden"/>`;
+  // lines: draw smaller series first so the big ones sit on top
+  [...series].reverse().forEach(sr=>{
+    const d = sr.v.map((v,i)=>`${i?'L':'M'}${X(i)},${Y(v)}`).join(' ');
+    g += `<path d="${d}" fill="none" stroke="${CAT_COLOR(sr.k)}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+    sr.v.forEach((v,i)=>{ g += `<circle cx="${X(i)}" cy="${Y(v)}" r="4" fill="${CAT_COLOR(sr.k)}" stroke="var(--surface)" stroke-width="2"/>`; });
+  });
+  // end labels with simple collision relaxation
+  const labs = series.map(sr=>({sr, y:Y(sr.v[n-1]), y0:Y(sr.v[n-1])})).sort((a,b)=>a.y-b.y);
+  const gap = 15;
+  for(let it=0; it<30; it++){
+    for(let i=1;i<labs.length;i++){ const o = labs[i].y - labs[i-1].y; if(o<gap){ const push=(gap-o)/2; labs[i-1].y-=push; labs[i].y+=push; } }
+    labs.forEach(l=>{ l.y = Math.min(H-m.b, Math.max(m.t, l.y)); });
+  }
+  const lx = X(n-1) + 10;
+  labs.forEach(l=>{
+    if(Math.abs(l.y-l.y0) > 2) g += `<line x1="${X(n-1)+5}" y1="${l.y0}" x2="${lx-2}" y2="${l.y}" stroke="var(--ink-3)" stroke-width="1"/>`;
+    g += `<text x="${lx}" y="${l.y+4}" font-size="12" fill="var(--ink)">${esc(l.sr.name)} <tspan fill="var(--ink-2)" font-variant-numeric="tabular-nums">${l.sr.v[n-1]}</tspan></text>`;
+  });
+  // hover bands
+  const bw = n===1 ? (W-m.l-m.r) : (W-m.l-m.r)/(n-1);
+  cohorts.forEach((c,i)=>{ g += `<rect class="band" data-i="${i}" x="${X(i)-bw/2}" y="${m.t}" width="${bw}" height="${H-m.t-m.b}" fill="transparent" tabindex="0"/>`; });
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.innerHTML = g;
+  const guide = svg.querySelector('#trendGuide');
+  svg.querySelectorAll('.band').forEach(b=>{
+    const i = +b.dataset.i, c = cohorts[i];
+    const html = `<b>${c.name}（${c.entryYear}入學）</b><div style="opacity:.75;margin-bottom:4px">原住民 ${indT[i]} 人・占該年級 ${fmtPct(indT[i],gTotal[i])}</div>` + tribeTip(byG[i]);
+    const on = e=>{ hideTip(); guide.setAttribute('x1',X(i)); guide.setAttribute('x2',X(i)); guide.setAttribute('visibility','visible'); showTip(e, html); };
+    const off = ()=>{ hideTip(); guide.setAttribute('visibility','hidden'); };
+    b.addEventListener('pointermove', on); b.addEventListener('pointerleave', off);
+    b.addEventListener('focus', ()=>{ const r=b.getBoundingClientRect(); on({clientX:r.left+r.width/2, clientY:r.top+20}); });
+    b.addEventListener('blur', off);
+  });
+
+  // table: all tribes
+  const dl = v => v>0?`<span class="delta up">▲ ${v}</span>`:v<0?`<span class="delta down">▼ ${-v}</span>`:'<span class="delta" style="color:var(--ink-3)">—</span>';
+  const first = 0, last = n-1;
+  document.getElementById('trendTbl').innerHTML =
+    `<thead><tr><th>族別</th>${cohorts.map(c=>`<th>${c.name}（${c.entryYear}）</th>`).join('')}<th>合計</th><th>${cohorts[last].name}較${cohorts[first].name}</th></tr></thead>
+    <tbody>${TRIBES.map((t,i)=>`<tr><td><i class="dot" style="background:${CAT_COLOR(tcat(i))};margin-right:6px"></i>${esc(t)}</td>${byG.map(c=>`<td class="num">${c[i]||'<span class="zero">0</span>'}</td>`).join('')}<td class="num"><b>${byG.reduce((sum,c)=>sum+c[i],0)}</b></td><td class="num">${dl(byG[last][i]-byG[first][i])}</td></tr>`).join('')}</tbody>
+    <tfoot><tr><td>原住民合計</td>${indT.map(v=>`<td class="num">${v}</td>`).join('')}<td class="num">${indT.reduce((a,b)=>a+b,0)}</td><td class="num">${dl(indT[last]-indT[first])}</td></tr>
+    <tr><td style="font-weight:500;color:var(--ink-2)">占該年級學生</td>${indT.map((v,i)=>`<td class="num" style="font-weight:500;color:var(--ink-2)">${fmtPct(v,gTotal[i])}</td>`).join('')}<td class="num" style="font-weight:500;color:var(--ink-2)">${fmtPct(indT.reduce((a,b)=>a+b,0), gTotal.reduce((a,b)=>a+b,0))}</td><td></td></tr></tfoot>`;
+}
+let trendTimer;
+addEventListener('resize', ()=>{ clearTimeout(trendTimer); trendTimer = setTimeout(()=>{ if(state.view==='tribe') renderTrend(); }, 150); });
+
+// ---- render ----
+function render(){
+  hideTip();
+  Object.entries(tabs).forEach(([k,b])=>{ b.setAttribute('aria-selected', state.view===k); b.tabIndex = state.view===k?0:-1; });
+  document.getElementById('view-overview').hidden = state.view!=='overview';
+  document.getElementById('view-special').hidden = state.view!=='special';
+  document.getElementById('view-tribe').hidden = state.view!=='tribe';
+  const lede = document.getElementById('lede');
+  if(state.view==='overview'){
+    document.getElementById('pageTitle').textContent = '學生從哪些國中來？';
+    lede.textContent = `統計 ${cohorts.map(c=>c.entryYear).join('、')} 年入學的三屆學生（目前的高三、高二、高一）畢業於哪些國中。可依年級、班級、國中所在縣市與報部身份篩選。`;
+    renderOverview();
+  } else if(state.view==='tribe'){
+    document.getElementById('pageTitle').textContent = '原住民學生的族別與來源';
+    lede.textContent = `依原住民族別學生資料一覽表，分析原住民學生在各班別、各年級的族別組成，以及各族學生畢業於哪些國中。`;
+    renderTribe();
+    renderTrend();
+  } else {
+    document.getElementById('pageTitle').textContent = '特殊班學生從哪些國中來？';
+    lede.textContent = `每個年級有三個特殊班：${PROGRAMS.map(p=>`第 ${p.no} 班${p.name}`).join('、')}。這一頁只分析這三班的學生，並與普通班比較來源國中的分布。`;
+    renderSpecial();
+  }
+  ls('jh.state', JSON.stringify({grade:state.grade, county:state.county, ident:state.ident, prog:state.prog, sgrade:state.sgrade, tgrade:state.tgrade, tgroup:state.tgroup, tribe:state.tribe}));
+}
+
+// restore
+try{
+  const s = JSON.parse(ls('jh.state')||'{}');
+  if([0,1,2,3].includes(s.grade)) state.grade = s.grade;
+  if(s.county && counties.includes(s.county)) state.county = s.county;
+  if(Number.isInteger(s.ident) && s.ident>=-1 && s.ident<IDS.length) state.ident = s.ident;
+  if([0,...PROGRAMS.map(p=>p.no)].includes(s.prog)) state.prog = s.prog;
+  if([0,1,2,3].includes(s.sgrade)) state.sgrade = s.sgrade;
+  if([0,1,2,3].includes(s.tgrade)) state.tgrade = s.tgrade;
+  if([0,1].includes(s.tgroup)) state.tgroup = s.tgroup;
+  if(Number.isInteger(s.tribe) && s.tribe>=-1 && s.tribe<TRIBES.length) state.tribe = s.tribe;
+}catch(e){}
+if(location.hash==='#special') state.view='special';
+if(location.hash==='#tribe') state.view='tribe';
+render();
+</script>
